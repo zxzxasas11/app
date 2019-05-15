@@ -16,9 +16,9 @@ class UserModel {
      * @returns {Promise<boolean>}
      */
     static async create(user) {
-        let {userId, code, password, username} = user;
-        //let  reg = new RegExp("-", g);
-        user.userId = UUID.v1();
+        let {userId, code, password, username,createTime} = user;
+        user.userId = UUID.v1().replace(/-/g,"");
+        user.createTime = new Date();
         await User.create(user);
         return true
     }
@@ -32,7 +32,6 @@ class UserModel {
         let data =await User.findAndCountAll({attributes: ['userId', 'password', 'code']});
         console.log(data);
         return  data;
-
     }
 
     /**
@@ -41,14 +40,18 @@ class UserModel {
      * @returns {Promise<*>}
      */
     static async listByName(username){
-        let data =await User.findAll({
+        let data =await User.findAndCountAll({
             where:{
-                username/*:{
-                    $like: '%'+username+'%'
-                }*/
-            }
+                username:{
+                    [Op.like]: '%'+username+'%'
+                }
+            },
+            order: [
+                ['userId', 'DESC']
+            ],
+            //attributes: {exclude: ['createTime']}
+            attributes:['userId','code','username']
         });
-        console.log(data);
         return data;
     }
 }
