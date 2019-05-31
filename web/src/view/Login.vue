@@ -6,7 +6,7 @@
             <span @click="state='login'">登录</span>
         </div>
 
-        <el-form v-if="state==='register'"  :model="registerForm" :rules="registerRules" ref="registerForm" label-width="100px" class="demo-ruleForm">
+            <el-form v-if="state==='register'"  :model="registerForm" :rules="registerRules" ref="registerForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="账号" prop="code">
                 <el-input v-model="registerForm.code"></el-input>
             </el-form-item>
@@ -17,7 +17,7 @@
                 <el-input v-model="registerForm.username"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitRegister('registerForm')">注册</el-button>
+                <el-button type="primary" @click="register">注册</el-button>
                 <el-button @click="resetForm('registerForm')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+    import {mapState, mapActions} from 'vuex';
     export default {
         name: "Login",
         data(){
@@ -75,7 +76,10 @@
             }
         },
         methods: {
-            submitRegister(formName){
+            ...mapActions({
+                userRegister:"/user/userRegister"
+            }),
+            /*submitRegister(formName){
                 const that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -85,12 +89,9 @@
                         return false;
                     }
                 });
-            },
-            register(){
-                const that = this;
-                /*this.$post("/User/userAdd",this.registerForm).then(function(response){
-                    console.log(response)
-                })*/
+            },*/
+            async register(){
+                await this.userRegister(this.registerForm);
             },
             login(){
                 const that = this;

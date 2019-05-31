@@ -5,5 +5,8 @@ export default {
     login(params) {
         return fetch.post('/user/login', params);
     },
+    register(params){
+        return fetch.post("/user/register",params);
+    }
 
 }

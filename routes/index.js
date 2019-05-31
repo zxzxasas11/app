@@ -9,7 +9,7 @@ const router = new Router({
 /**
  * 用户接口
  */
-router.post('/user/create',UserController.create);
+router.post('/user/register',UserController.create);
 /**
  * 文章接口
  */
