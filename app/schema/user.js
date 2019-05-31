@@ -6,13 +6,13 @@ module.exports = function(sequelize,DataTypes){
                 primaryKey: true,
                 allowNull: true,
             },
-            //文章标题
+            //账号
             code:{
                 type: DataTypes.STRING,
                 allowNull: false,
                 field: 'code'
             },
-            //作者
+            //密码
             password:{
                 type: DataTypes.STRING,
                 allowNull: false,
