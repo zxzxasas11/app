@@ -6,14 +6,14 @@
             <span @click="state='login'">登录</span>
         </div>
 
-            <el-form v-if="state==='register'"  :model="registerForm" :rules="registerRules" ref="registerForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="账号" prop="code">
+            <el-form v-if="state==='register'"  :model="registerForm"  ref="registerForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="账号" >
                 <el-input v-model="registerForm.code"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
+            <el-form-item label="密码" >
                 <el-input v-model="registerForm.password"></el-input>
             </el-form-item>
-            <el-form-item label="用户名" prop="username">
+            <el-form-item label="用户名">
                 <el-input v-model="registerForm.username"></el-input>
             </el-form-item>
             <el-form-item>
@@ -22,11 +22,11 @@
             </el-form-item>
         </el-form>
 
-        <el-form v-if="state==='login'" :model="loginForm" :rules="loginRules" ref="loginForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="账号" prop="code">
+        <el-form v-if="state==='login'" :model="loginForm"  ref="loginForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="账号" >
                 <el-input v-model="loginForm.code"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
+            <el-form-item label="密码" >
                 <el-input v-model="loginForm.password"></el-input>
             </el-form-item>
             <el-form-item>
@@ -49,59 +49,19 @@
                     password:"",
                     username:""
                 },
-                registerRules: {
-                    code: [
-                        { required: true, message: '请输入账号', trigger: 'blur' },
-                    ],
-                    password: [
-                        { required: true, message: '请输入密码', trigger: 'blur' }
-                    ],
-                    username: [
-                        { required: true, message: '请输入用户名', trigger: 'blur' },
-                    ],
-                },
                 loginForm: {
                     code: '',
                     password:''
                 },
-                loginRules: {
-                    code: [
-                        { required: true, message: '请输入账号', trigger: 'blur' },
-                        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-                    ],
-                    password: [
-                        { required: true, message: '请输入密码', trigger: 'blur' }
-                    ],
-                }
             }
         },
         methods: {
-            ...mapActions({
-                userRegister:"/user/userRegister"
-            }),
-            /*submitRegister(formName){
-                const that = this;
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        that.register();
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
-            },*/
-            async register(){
-                await this.userRegister(this.registerForm);
+            ...mapActions(['userRegister']),
+            register(){
+                this.userRegister(this.registerForm);
             },
             login(){
                 const that = this;
-                /*this.$post("/User/login",this.loginForm).then(function(response){
-                    console.log(response)
-                    if(response.code===200){
-                        that.$router.push("/Home");
-                        that.$store.dispatch("setUserInfo",response.data[0]);
-                    }
-                })*/
             },
             submitForm(formName) {
                 const that = this;

@@ -20,7 +20,7 @@ const actions = {
    * @return {Promise<void>}
    */
   async userRegister({state, commit}, params) {
-    console.log(params);
+    console.log(">>>>>>>>>>>");
     return await user.register(params);
   },
 

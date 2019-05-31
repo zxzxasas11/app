@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store';
+
 //懒加载
 import VueLazyLoad from 'vue-lazyload'
 
@@ -13,8 +13,7 @@ Vue.prototype.axios = axios;
 import qs from 'qs';
 Vue.prototype.$qs = qs;
 
-import Vuex from 'vuex';
-Vue.use(Vuex);
+import store from './store';
 import common from './assets/js/common';
 Vue.prototype.common = common;
 
