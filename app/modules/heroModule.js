@@ -35,8 +35,8 @@ class HeroModule {
                 attributes: ['id', 'name', 'level','rarity']
             }
         );*/
-        console.log(data);
-        return  data;
+        console.log(data[0].name);
+        return  await Hero.bulkCreate(data);;
     }
 }
 

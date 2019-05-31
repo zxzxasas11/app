@@ -28,19 +28,19 @@ module.exports = function(sequelize,DataTypes){
             star:{
                 type: DataTypes.INTEGER,
                 allowNull: true,
-                field: 'createTime',
+                field: 'star',
             },
             //稀有度
             rarity:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'createTime',
+                field: 'rarity',
             },
             //技能
             skill:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'createTime',
+                field: 'skill',
             },
             //创建时间
             createTime:{
@@ -52,7 +52,7 @@ module.exports = function(sequelize,DataTypes){
             ownerId:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'createTime',
+                field: 'ownerId',
             },
         }
         ,{
