@@ -21,6 +21,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
 
+import VueLocalStorage from 'vue-ls';
+Vue.use(VueLocalStorage);
+
 Vue.config.productionTip = false
 
 Vue.use(VueLazyLoad, {
