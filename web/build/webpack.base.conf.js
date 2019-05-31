@@ -13,7 +13,9 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    //app: './src/main.js'
+    app: ["babel-polyfill", "./src/main.js"]
+    //app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -35,6 +37,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader",
       },
       {
         test: /\.js$/,
