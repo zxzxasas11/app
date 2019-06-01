@@ -55,7 +55,7 @@ class UserController {
         }
     }
     /**
-     * 根据username查询
+     * 根据code查询单条
      * @param ctx code        用户名称
      *
      * @returns 创建成功返回用户信息，失败返回错误信息
@@ -105,8 +105,6 @@ class UserController {
             }
             return false;
         }
-        console.log(userDetail.password);
-        console.log(bcrypt.compareSync(password, userDetail.password));
         if (bcrypt.compareSync(password, userDetail.password)){
             const userToken ={code:userDetail.code,userId:userDetail.userId,username:userDetail.username};
             const token =jwt.sign(userToken,secret.sign,{expiresIn:"1h"});
