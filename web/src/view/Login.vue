@@ -30,7 +30,7 @@
                 <el-input v-model="loginForm.password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
+                <el-button type="primary" @click="login">登录</el-button>
                 <el-button @click="resetForm('loginForm')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -56,12 +56,13 @@
             }
         },
         methods: {
-            ...mapActions({register:'userRegister'}),
+            //...mapActions({register:'userRegister',login:'userLogin'}),
+          ...mapActions(["userRegister","userLogin"]),
             /*register(){
                 this.userRegister(this.registerForm);
             },*/
             login(){
-                const that = this;
+              this.userLogin(this.loginForm);
             },
             submitForm(formName) {
                 const that = this;

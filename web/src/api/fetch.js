@@ -1,13 +1,16 @@
-import Util from '../libs/util'
 import qs from 'qs'
 import Vue from 'vue'
 import store from '../store/index'
+import axios from 'axios';
 
-Util.ajax.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest'
-};
 
-Util.ajax.interceptors.request.use(config => {
+const url = process.env.NODE_ENV === 'development'
+  // 测试环境api接口
+  ? 'http://localhost:6789/api/v1'
+  // 线上环境api接口
+  : 'http://192.168.31.226.com/api/v1';
+axios.defaults.baseURL=url;
+axios.interceptors.request.use(config => {
   /**
    * 在这里做loading ...
    * @type {string}
@@ -26,7 +29,7 @@ Util.ajax.interceptors.request.use(config => {
 
 });
 
-Util.ajax.interceptors.response.use(response => {
+axios.interceptors.response.use(response => {
 
   /**
    * 在这里做loading 关闭
@@ -50,7 +53,7 @@ Util.ajax.interceptors.response.use(response => {
   switch (code) {
     case 401:
       // 处理401错误
-      alert("权限不足");
+      alert(res.data.message);
       break;
 
     case 404:
@@ -84,23 +87,24 @@ Util.ajax.interceptors.response.use(response => {
   }
 
   // 关闭loading
-  closeLoading()
+  //closeLoading()
   return Promise.reject(res)
 
 });
 
 export default {
   post(url, params = {}) {
-    let {isLoading = true} = params;
-    return Util.ajax({
-      method: 'post',
-      url: url,
-      data: qs.stringify(params),
-      timeout: 30000,
-      isLoading,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
+    return new Promise((resolve,reject) => {
+      axios.post(url,qs.stringify(params),{
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+      })
+        .then(response => {
+          resolve(response.data);
+        },err => {
+          reject(err)
+        })
     })
   },
 

@@ -1,12 +1,15 @@
 import users from '../../api/user'
+import jwt_decode from 'jwt-decode'
 const user ={
   state:{
     userInfo:{
+      token:""
     },
   },
   mutations:{
     SET_USERINFO(state,data){
-      state.userInfo = data;
+      state.userInfo.token = data;
+      localStorage.setItem("token",data);
     }
   },
   actions:{
@@ -19,8 +22,22 @@ const user ={
      * @return {Promise<void>}
      */
     async userRegister({state, commit}, params) {
-      console.log(1);
       return await users.register(params);
+    },
+
+    /**
+     * 用户登录
+     * @param state
+     * @param commit
+     * @param params
+     * @return {Promise<void>}
+     */
+    async userLogin({state, commit}, params) {
+      let data = await users.login(params).then(res=>{
+        console.log(res);
+        commit("SET_USERINFO",res.data.token);
+      });
+      return data;
     },
 
   }
