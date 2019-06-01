@@ -1,5 +1,7 @@
 const UserModel = require("../modules/user");
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const secret = require('../../config/secret');
 
 class UserController {
     /**
@@ -54,13 +56,13 @@ class UserController {
     }
     /**
      * 根据username查询
-     * @param ctx username        用户名称
+     * @param ctx code        用户名称
      *
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async geyOneByName(ctx){
-        let username = ctx.request.body.username;
-        let data = await UserModel.listByName(username);
+        let code = ctx.request.body.code;
+        let data = await UserModel.listByName(code);
         ctx.response.status = 200;
         ctx.body = {
             code: 200,
@@ -81,6 +83,51 @@ class UserController {
         ctx.body = {
             code: 200,
             message: `删除成功`,
+        }
+    }
+
+    /**
+     * 登录
+     * @param ctx code         用户账号
+     * @param ctx password     用户密码
+     *
+     * @returns 登录成功返回用户信息，失败返回错误原因
+     */
+    static async login(ctx){
+        const {code,password} = ctx.request.body;
+
+        let userDetail =await UserModel.listByName(code);
+        if(!userDetail){
+            ctx.response.status = 403;
+            ctx.body = {
+                code: 403,
+                message: "用户不存在"
+            }
+            return false;
+        }
+        console.log(userDetail.password);
+        console.log(bcrypt.compareSync(password, userDetail.password));
+        if (bcrypt.compareSync(password, userDetail.password)){
+            const userToken ={code:userDetail.code,userId:userDetail.userId,username:userDetail.username};
+            const token =jwt.sign(userToken,secret.sign,{expiresIn:"1h"});
+            ctx.response.status = 200;
+            ctx.body = {
+                code: 200,
+                message: "登录成功",
+                data: {
+                    userId: userDetail.userId,
+                    username: userDetail.username,
+                    code: userDetail.code,
+                    token: token
+                }
+            }
+        }
+        else {
+            ctx.response.status = 401;
+            ctx.body = {
+                code: 401,
+                message: "用户名或密码错误"
+            }
         }
     }
 

@@ -11,7 +11,8 @@ const router = new Router({
  */
 router.post('/user/register',UserController.create);
 router.get('/user/getAll',UserController.getAll);
-router.get("/user/getOne",UserController.geyOneByName)
+router.get("/user/getOne",UserController.geyOneByName);
+router.post("/user/login",UserController.login);
 /**
  * 文章接口
  */

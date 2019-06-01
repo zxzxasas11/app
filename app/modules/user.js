@@ -38,23 +38,17 @@ class UserModel {
 
     /**
      * chaxun
-     * @param username
+     * @param code
      * @returns {Promise<*>}
      */
-    static async listByName(username){
-        let data =await User.findAndCountAll({
+    static async listByName(code){
+        let data =  await User.findOne({
             where:{
-                username:{
-                    [Op.like]: '%'+username+'%'
-                }
+                code
             },
-            order: [
-                ['userId', 'DESC']
-            ],
-            //attributes: {exclude: ['createTime']}
-            attributes:['userId','code','username']
         });
         return data;
+
     }
 
     /**
