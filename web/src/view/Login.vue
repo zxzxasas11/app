@@ -56,10 +56,10 @@
             }
         },
         methods: {
-            ...mapActions(['userRegister']),
-            register(){
+            ...mapActions({register:'userRegister'}),
+            /*register(){
                 this.userRegister(this.registerForm);
-            },
+            },*/
             login(){
                 const that = this;
             },

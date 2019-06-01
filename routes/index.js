@@ -10,6 +10,8 @@ const router = new Router({
  * 用户接口
  */
 router.post('/user/register',UserController.create);
+router.get('/user/getAll',UserController.getAll);
+router.get("/user/getOne",UserController.geyOneByName)
 /**
  * 文章接口
  */

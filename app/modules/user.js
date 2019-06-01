@@ -16,11 +16,15 @@ class UserModel {
      * @returns {Promise<boolean>}
      */
     static async create(user) {
-        let {userId, code, password, username,createTime} = user;
+        /*let {userId, code, password, username,createTime} = user;
         user.userId = UUID.v1().replace(/-/g,"");
         user.createTime = new Date();
         await User.create(user);
-        return true
+        return true*/
+        let {userId, code, password, username,createTime } = user;
+        user.userId = UUID.v1().replace(/-/g,"");
+        user.createTime = new Date();
+        return await User.create(user);
     }
 
 
@@ -29,9 +33,7 @@ class UserModel {
      * @returns {Promise<*>}
      */
     static async list(){
-        let data =await User.findAndCountAll({attributes: ['userId', 'password', 'code']});
-        console.log(data);
-        return  data;
+        return await User.findAndCountAll({attributes: ['userId', 'code','username']});
     }
 
     /**
@@ -53,6 +55,18 @@ class UserModel {
             attributes:['userId','code','username']
         });
         return data;
+    }
+
+    /**
+     * 根据userId删除
+     * @param userId
+     * @returns {Promise<*>}
+     */
+    static async deleteById(userId){
+        await User.destroy({
+            where:userId
+        });
+        return true;
     }
 }
 

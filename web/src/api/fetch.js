@@ -12,10 +12,10 @@ Util.ajax.interceptors.request.use(config => {
    * 在这里做loading ...
    * @type {string}
    */
-  if (config.isLoading) {
+  /*if (config.isLoading) {
     // 开启loading
-    store.dispatch('loading/openLoading')
-  }
+    //store.dispatch('loading/openLoading')
+  }*/
 
   // 获取token
   config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
@@ -39,7 +39,7 @@ Util.ajax.interceptors.response.use(response => {
     Vue.ls.set("web-token", newToken);
   }
   // 关闭loading
-  closeLoading()
+  //closeLoading()
 
   return response;
 
