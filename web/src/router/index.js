@@ -20,6 +20,13 @@ export default new Router({
       component(resolve) {
         require(['../view/Login.vue'], resolve);
       },
+    },
+    {
+      path: '/Home',
+      name: 'Home',
+      component(resolve) {
+        require(['../view/Home.vue'], resolve);
+      },
     }
   ]
 })

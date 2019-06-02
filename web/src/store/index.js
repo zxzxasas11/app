@@ -21,7 +21,7 @@ const modulesContext = require.context('@/store/modules', true, /\.js$/);
 /**
  * 创建模块
  */
-createStoreModules(modulesContext);
+//createStoreModules(modulesContext);
 
 /**
  * 创建模块函数

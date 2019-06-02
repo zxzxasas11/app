@@ -39,6 +39,8 @@
 
 <script>
     import {mapState, mapActions} from 'vuex';
+    import fetch from '../api/fetch';
+
     export default {
         name: "Login",
         data(){
@@ -56,13 +58,14 @@
             }
         },
         methods: {
-            //...mapActions({register:'userRegister',login:'userLogin'}),
-          ...mapActions(["userRegister","userLogin"]),
-            /*register(){
-                this.userRegister(this.registerForm);
-            },*/
+            ...mapActions(["userLogin"]),
             login(){
-              this.userLogin(this.loginForm);
+              this.userLogin(this.loginForm).then(res=>{
+                if(res.code===200){
+                  this.$message("登陆成功");
+                  this.$router.push("/Home");
+                }
+              });
             },
             submitForm(formName) {
                 const that = this;
