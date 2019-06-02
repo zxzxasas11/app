@@ -1,7 +1,7 @@
 
 const Router = require('koa-router');
 const UserController = require('../app/controllers/user');
-
+const BillController = require('../app/controllers/bill');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -14,7 +14,7 @@ router.get('/user/getAll',UserController.getAll);
 router.get("/user/getOne",UserController.geyOneByName);
 router.post("/user/login",UserController.login);
 /**
- * 文章接口
+ * 账单接口
  */
-
+router.post("/bill/create",BillController.create);
 module.exports = router

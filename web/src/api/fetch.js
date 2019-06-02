@@ -109,12 +109,30 @@ export default {
   },
 
   get(url, params = {}) {
-    let {isLoading = true} = params;
+    /*let {isLoading = true} = params;
     return Util.ajax({
       method: 'get',
       url: url,
       params,
       isLoading
+    })*/
+    return new Promise((resolve,reject) => {
+      /*headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },*/
+      axios({
+        url:url,
+        method:"GET",
+        params:params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+      })
+        .then(response => {
+          resolve(response.data);
+        },err => {
+          reject(err)
+        })
     })
   },
 
