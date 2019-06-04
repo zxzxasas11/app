@@ -14,18 +14,17 @@
                 </el-menu-item>
             </router-link>
             <el-submenu style="background-color: #f4f9ff" :index="menu.menuId" v-for="(menu,index) in menus"
-                        :key="menu.menuId" v-if="menu.menuPid==='0'">
+                        :key="menu.menuId">
                 <template slot="title">
                     <i class="el-icon-menu"></i>
-                    <span>{{menu.name}}</span>
+                    <span>{{menu.menuName}}</span>
                 </template>
                 <el-menu-item-group
                         class="list-line"
-                        :key="menu2.menuId" :index="menu2.menuId" v-for="menu2 in menus"
-                        v-if="menu2.menuPid===menu.menuId&&menu2.url!=''&&menu2.url!=null">
+                        :key="menu2.menuId" :index="menu2.menuId" v-for="menu2 in menu.children">
                     <el-menu-item :index="menu2.menuId">
-                        <router-link class="second_menu_a" :to="menu2.url" @click.native="addTags(menu2)">
-                            {{menu2.name}}
+                        <router-link class="second_menu_a" :to="menu2.menuUrl" @click.native="addTags(menu2)">
+                            {{menu2.menuName}}
                         </router-link>
                     </el-menu-item>
                 </el-menu-item-group>
@@ -36,7 +35,7 @@
 
 <script>
     import Utils from '../../assets/js/Utils'
-
+    import menuFunction from '../../api/menu'
     export default {
         name: "Menu",
         data() {
@@ -45,7 +44,10 @@
             }
         },
         created() {
-            this.getMenu();
+            menuFunction.getAllMenu().then(res=>{
+                console.log(res);
+                this.menus = this.common.listToTree(res.data.rows,"0","menuPid","menuId");
+            });
         },
         methods: {
             handleOpen() {
@@ -53,12 +55,6 @@
             },
             handleClose() {
 
-            },
-            getMenu() {
-                const that = this;
-                this.$post("/Menu/loadMenu").then(function (response) {
-                    that.menus = response.data;
-                });
             },
             addTags(m) {
                 let visit = this.$store.getters.visitedViews;
@@ -84,7 +80,7 @@
 <style scoped lang="less">
     .menu-box {
         height: 100%;
-
+        text-align: left;
         ul {
             height: 100%;
         }

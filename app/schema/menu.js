@@ -11,25 +11,25 @@ module.exports = function(sequelize,DataTypes){
             menuPid:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'menu_pid'
+                field: 'menu_pid',
             },
             //菜单名称
             menuName:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'menu_name'
+                field: 'menu_name',
             },
             //菜单url
             menuUrl:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'menu_url'
+                field: 'menu_url',
             },
             //状态
             status:{
                 type: DataTypes.INTEGER,
                 allowNull: true,
-                field:'status'
+                field:'status',
             },
         }
         ,{

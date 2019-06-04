@@ -27,12 +27,7 @@ class BillController {
             code: 200,
             message: `创建成功`,
         }
-        //console.log(ctx.request.files.file);
     }
-
-
-
-
 
 }
 
