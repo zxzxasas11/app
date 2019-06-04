@@ -24,4 +24,6 @@ router.post("/bill/create",BillController.create);
  *
  */
 router.get("/menu/getAll",MenuController.getAll);
+router.get("/menu/getByMenuPid",MenuController.geyOneByMenuPid);
+router.post("/menu/addMenu",MenuController.create);
 module.exports = router

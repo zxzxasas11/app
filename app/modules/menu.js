@@ -20,6 +20,35 @@ class MenuModel {
         return await Menu.findAndCountAll();
     }
 
+    /**
+     * 根据主键id查询
+     * @param menuPid
+     * @returns {Promise<*>}
+     */
+    static async getByMenuId(menuPid){
+        return await Menu.findAll({
+            where:{
+                menuPid
+            },
+        })
+    }
+
+    /**
+     * 创建用户
+     * @param menu
+     * @returns {Promise<boolean>}
+     */
+    static async create(menu) {
+        /*let {userId, code, password, username,createTime} = user;
+        user.userId = UUID.v1().replace(/-/g,"");
+        user.createTime = new Date();
+        await User.create(user);
+        return true*/
+        let {menuPid,menuName,menuUrl} = menu;
+        menu.menuId = UUID.v1().replace(/-/g,"");
+        menu.status = 1;
+        return await Menu.create(menu);
+    }
 
 }
 
