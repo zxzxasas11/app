@@ -23,7 +23,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
   extension: 'pug'
-}));
+}))
 
 // logger
 app.use(async (ctx, next) => {
@@ -32,17 +32,6 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
-
-
-//koabody
-const koaBody = require('koa-body');
-
-app.use(koaBody({
-  multipart: true,
-  formidable: {
-    maxFileSize: 2000 * 1024 * 1024 // 设置上传文件大小最大限制，默认2M
-  }
-}));
 
 // routes
 app.use(index.routes(), index.allowedMethods())

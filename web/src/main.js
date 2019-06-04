@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+import './assets/css/global.css';
 //懒加载
 import VueLazyLoad from 'vue-lazyload'
 
@@ -24,7 +24,7 @@ Vue.use(ElementUI, { size: 'small', zIndex: 3000 });
 import VueLocalStorage from 'vue-ls';
 Vue.use(VueLocalStorage);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(VueLazyLoad, {
   error: '../static/lazyloading.svg',

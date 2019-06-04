@@ -21,7 +21,8 @@ axios.interceptors.request.use(config => {
   }*/
 
   // 获取token
-  config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
+  //config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
+  config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
   return config
 
 }, error => {
@@ -39,7 +40,8 @@ axios.interceptors.response.use(response => {
   let newToken = response.headers['new-token'];
 
   if (newToken) {
-    Vue.ls.set("web-token", newToken);
+    //Vue.ls.set("web-token", newToken);
+    localStorage.setItem("token",newToken);
   }
   // 关闭loading
   //closeLoading()
@@ -117,9 +119,6 @@ export default {
       isLoading
     })*/
     return new Promise((resolve,reject) => {
-      /*headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-      },*/
       axios({
         url:url,
         method:"GET",

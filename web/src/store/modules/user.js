@@ -36,6 +36,7 @@ const user ={
       /*let data = await users.login(params).then(res=>{
         commit("SET_USERINFO",res.data.token);
       });*/
+
       let ret = await users.login(params);
       return ret;
     },

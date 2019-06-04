@@ -27,6 +27,13 @@ export default new Router({
       component(resolve) {
         require(['../view/Home.vue'], resolve);
       },
+    },
+    {
+      path: '/Main',
+      name: '后台管理',
+      component(resolve) {
+        require(['../view/platform-manage/Main.vue'], resolve);
+      },
     }
   ]
 })
