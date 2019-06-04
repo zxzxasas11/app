@@ -2,7 +2,7 @@
 const Router = require('koa-router');
 const UserController = require('../app/controllers/user');
 const BillController = require('../app/controllers/bill');
-const uploadDataController = require('../app/controllers/uploadData')
+const MenuController = require('../app/controllers/menu')
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -20,8 +20,8 @@ router.post("/user/login",UserController.login);
 router.post("/bill/create",BillController.create);
 
 /**
- * 上传文件接口
+ * 菜单接口
  *
  */
-router.post("/upload",BillController.uploadExcel);
+router.get("/menu/getAll",MenuController.getAll);
 module.exports = router
