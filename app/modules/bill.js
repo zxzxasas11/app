@@ -11,12 +11,21 @@ Bill.sync({force: false}); //自动创建表
 const Op = Sequelize.Op;
 class BillModel {
     /**
-     * 创建用户
+     * 创建账单 单条
      * @param bill
      * @returns {Promise<boolean>}
      */
     static async create(bill) {
         return await Bill.create(bill);
+    }
+
+    /**
+     * 批量创建账单
+     * @param bill
+     * @returns {Promise<*>}
+     */
+    static async batch(bill){
+        return await Bill.bulkCreate(bill);
     }
 
 

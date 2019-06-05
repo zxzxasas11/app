@@ -15,15 +15,20 @@ module.exports = function(sequelize,DataTypes){
             },
             //交易时间
             businessTime:{
-                type: DataTypes.DATE,
+                type: DataTypes.STRING,
                 allowNull: true,
                 field: 'businessTime'
             },
             //支付时间
             payTime:{
-                type: DataTypes.DATE,
+                type: DataTypes.STRING,
                 allowNull: true,
                 field:'payTime'
+            },
+            editTime:{
+                type: DataTypes.STRING,
+                allowNull: true,
+                field:'editTime'
             },
             //交易来源
             tradeOrigin:{

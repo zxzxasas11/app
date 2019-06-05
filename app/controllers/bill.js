@@ -21,7 +21,12 @@ class BillController {
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async uploadExcel(ctx){
-        console.log(ctx.request.body);
+        await BillModel.batch(ctx.request.body);
+        ctx.response.status=200;
+        ctx.body={
+            code: 200,
+            message: `创建成功`,
+        }
     }
 
 }
