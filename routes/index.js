@@ -18,7 +18,8 @@ router.post("/user/login",UserController.login);
  * 账单接口
  */
 router.post("/bill/create",BillController.create);
-router.post("/bill/upload",BillController.uploadExcel)
+router.post("/bill/upload",BillController.uploadExcel);
+router.get("/bill/getAll",BillController.getAll)
 
 /**
  * 菜单接口

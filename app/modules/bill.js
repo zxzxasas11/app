@@ -28,6 +28,18 @@ class BillModel {
         return await Bill.bulkCreate(bill);
     }
 
+    /**
+     * 查询用户
+     * @returns {Promise<*>}
+     */
+    static async getAll(pageSize,currentPage){
+        //let pageSize=8,currentPage=1;
+        return await Bill.findAndCountAll({
+            'limit':pageSize,
+            'offset':pageSize*(currentPage-1)
+        });
+    }
+
 
 }
 

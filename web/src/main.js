@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './assets/css/global.css';
+/*import './assets/css/global.css';*/
 //懒加载
 import VueLazyLoad from 'vue-lazyload'
 
