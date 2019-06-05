@@ -21,11 +21,11 @@ class MenuModel {
     }
 
     /**
-     * 根据主键id查询
+     * 根据menuPid查询
      * @param menuPid
      * @returns {Promise<*>}
      */
-    static async getByMenuId(menuPid){
+    static async getByMenuPid(menuPid){
         return await Menu.findAll({
             where:{
                 menuPid
@@ -34,16 +34,11 @@ class MenuModel {
     }
 
     /**
-     * 创建用户
+     * 创建菜单
      * @param menu
      * @returns {Promise<boolean>}
      */
     static async create(menu) {
-        /*let {userId, code, password, username,createTime} = user;
-        user.userId = UUID.v1().replace(/-/g,"");
-        user.createTime = new Date();
-        await User.create(user);
-        return true*/
         let {menuPid,menuName,menuUrl} = menu;
         menu.menuId = UUID.v1().replace(/-/g,"");
         menu.status = 1;

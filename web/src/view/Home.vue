@@ -1,6 +1,6 @@
 <template>
 		<div>
-			<div>欢迎您{{username}}</div>
+			<div>欢迎您</div>
 			<el-upload
 				class="upload-demo"
 				drag
@@ -16,6 +16,8 @@
 
 <script>
 		import jwt_decode from 'jwt-decode'
+		import billFunction from '../api/bill'
+		import XLSX from 'xlsx'
 		export default {
 				name: "Home",
 				data(){
@@ -23,13 +25,47 @@
 
 						}
 				},
+				created(){
+					//alert(new Date(1900,0, 43605.95179398148))
+				},
 				computed:{
-					username(){
+					/*username(){
 						const decode = jwt_decode(localStorage.getItem("token"));
 						return decode.username;
-					}
+					}*/
 				},
 				methods:{
+					upload(a){
+						console.log(a);
+						let reader = new FileReader();
+						if (typeof FileReader === 'undefined') {
+							this.$message({
+								type: 'info',
+								message: '您的浏览器不支持FileReader接口'
+							});
+							return
+						};
+						reader.readAsBinaryString(a.file);
+						reader.onload = function (e) {
+							try {
+								let data = e.target.result;
+								let workbook = XLSX.read(data, { type: 'binary' })
+								let wsname = workbook.SheetNames[0]; // 取第一张表
+								let ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname]);
+								/*for(let i in ws){
+									for(let j in ws[i]){
+										console.log(ws[i][j]);
+									}
+								}*/
+								billFunction.upload(ws).then(res=>{
+									console.log(res);
+								})
+							}
+							catch (e) {
+									return false
+								}
+							}.bind(this)
+					},
 				}
 		}
 </script>

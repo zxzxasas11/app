@@ -111,13 +111,6 @@ export default {
   },
 
   get(url, params = {}) {
-    /*let {isLoading = true} = params;
-    return Util.ajax({
-      method: 'get',
-      url: url,
-      params,
-      isLoading
-    })*/
     return new Promise((resolve,reject) => {
       axios({
         url:url,
@@ -132,6 +125,20 @@ export default {
         },err => {
           reject(err)
         })
+    })
+  },
+  json(url, params = {}) {
+    return new Promise((resolve,reject) => {
+      axios.post(url,params,{
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+      })
+          .then(response => {
+            resolve(response.data);
+          },err => {
+            reject(err)
+          })
     })
   },
 

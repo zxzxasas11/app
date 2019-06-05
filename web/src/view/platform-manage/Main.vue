@@ -8,7 +8,7 @@
                 <span class="logout" @click="logout">注销</span>
             </div>
         </title>
-        <div class="window">
+        <div class="window overflow_hide">
             <div class="nav">
                 <Menu></Menu>
             </div>

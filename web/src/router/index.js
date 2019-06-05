@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode:"history",
@@ -34,6 +34,22 @@ export default new Router({
       component(resolve) {
         require(['../view/platform-manage/Main.vue'], resolve);
       },
+      children:[
+        {
+          path: '/MenuManage',
+          name: '菜单管理',
+          component(resolve) {
+            require(['../view/platform-manage/MenuManage.vue'], resolve);
+          },
+        },
+        {
+          path: '/BillManage',
+          name: '账单展示',
+          component(resolve) {
+            require(['../view/platform-manage/BillManage.vue'], resolve);
+          },
+        },
+      ]
     }
   ]
 })

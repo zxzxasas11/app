@@ -15,14 +15,13 @@ class MenuController {
     }
 
     /**
-     * 根据code查询单条
-     * @param ctx menuPid        用户名称
-     *
+     * 根据pid查询
+     * @param ctx menuPid        菜单父id
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async geyOneByMenuPid(ctx){
         let menuPid = ctx.request.body.menuPid;
-        let data = await MenuModel.getByMenuId(menuPid);
+        let data = await MenuModel.getByMenuPid(menuPid);
         ctx.response.status = 200;
         ctx.body = {
             code: 200,
