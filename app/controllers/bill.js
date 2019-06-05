@@ -22,6 +22,7 @@ class BillController {
      */
     static async uploadExcel(ctx){
         await BillModel.batch(ctx.request.body);
+        //await BillModel.create(ctx.request.body[0]);
         ctx.response.status=200;
         ctx.body={
             code: 200,
