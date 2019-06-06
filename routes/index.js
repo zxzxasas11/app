@@ -2,7 +2,7 @@
 const Router = require('koa-router');
 const UserController = require('../app/controllers/user');
 const BillController = require('../app/controllers/bill');
-const MenuController = require('../app/controllers/menu')
+const MenuController = require('../app/controllers/menu');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -19,7 +19,8 @@ router.post("/user/login",UserController.login);
  */
 router.post("/bill/create",BillController.create);
 router.post("/bill/upload",BillController.uploadExcel);
-router.get("/bill/getAll",BillController.getAll)
+router.get("/bill/getAll",BillController.getAll);
+router.post("/bill/delete",BillController.deleteById);
 
 /**
  * 菜单接口
@@ -28,4 +29,4 @@ router.get("/bill/getAll",BillController.getAll)
 router.get("/menu/getAll",MenuController.getAll);
 router.get("/menu/getByMenuPid",MenuController.geyOneByMenuPid);
 router.post("/menu/addMenu",MenuController.create);
-module.exports = router
+module.exports = router;

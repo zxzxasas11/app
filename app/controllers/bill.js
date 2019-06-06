@@ -57,6 +57,28 @@ class BillController {
             console.log(e);
         }
     }
+
+    /**
+     * 根据主键删除
+     * @param ctx
+     * returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async deleteById(ctx){
+        console.log(ctx.request.body);
+        try {
+            await BillModel.delete(ctx.request.body.billId);
+            ctx.response.status = 200;
+            ctx.body = {
+                code: 200,
+                message: `删除成功`,
+                data:data
+            }
+        }
+        catch (e) {
+
+        }
+    }
+
 }
 
 module.exports = BillController;

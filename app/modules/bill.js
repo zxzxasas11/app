@@ -40,6 +40,17 @@ class BillModel {
         });
     }
 
+    /**
+     * 根据billId删除
+     * @param billId
+     * @returns {Promise<*>}
+     */
+    static async delete(billId){
+        return await Bill.destroy({
+            where:billId
+        })
+    }
+
 
 }
 

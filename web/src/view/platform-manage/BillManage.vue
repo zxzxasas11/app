@@ -45,7 +45,6 @@
         methods:{
             getBill(){
                 billFunction.getAllBill().then(res=>{
-                    console.log(res);
                     this.info = res.data.rows;
                     this.total=res.data.count;
                 })
