@@ -26,7 +26,9 @@
 						}
 				},
 				created(){
-					alert(new Date(1900,0, 43600.7814699074))
+					//alert(new Date(1900,0, 43600.7814699074))
+					let str = "123     123          ";
+					alert(str.replace(/\s*/g,""))
 				},
 				computed:{
 					/*username(){

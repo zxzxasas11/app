@@ -22,21 +22,20 @@ class BillController {
      */
     static async uploadExcel(ctx){
         let data = ctx.request.body;
-        for(let i in data){
-            for(let j in data[i]){
-                //data[i][j]=data[i][j].trim();
-                console.log(typeof(data[i][j]))
+        let a = JSON.stringify(data).replace(/\s*/g,"");
+        a=a.replace("\\","");
+        ///console.log(JSON.parse(a));
+        try {
+            await BillModel.batch(JSON.parse(a));
+            ctx.response.status=200;
+            ctx.body={
+                code: 200,
+                message: `创建成功`,
             }
+        }catch (e) {
+            console.log(e);
         }
-        console.log(data);
-        return;
-        await BillModel.batch(ctx.request.body);
-        //await BillModel.create(ctx.request.body[0]);
-        ctx.response.status=200;
-        ctx.body={
-            code: 200,
-            message: `创建成功`,
-        }
+
     }
     /**
      * 查询所有

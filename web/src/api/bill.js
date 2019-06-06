@@ -5,5 +5,8 @@ export default {
     upload(params) {
         return fetch.json('/bill/upload', params)
     },
+    getAllBill(params){
+        return fetch.get("/bill/getAll",params);
+    }
 
 }

@@ -66,7 +66,7 @@
         data() {
             return {
                 currentPage: 1,
-                pageSize: 10,
+                pageSize: 8,
             }
         },
         props: ['tableData', 'tableKey', 'totalSize', 'btn_group', 'navHeight'],

@@ -17,18 +17,27 @@ module.exports = function(sequelize,DataTypes){
             businessTime:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field: 'businessTime'
+                field: 'businessTime',
+                /*get(){
+                    return moment(this.getDataValue('businessTime')).format('YYYY-MM-DD HH:mm:ss');
+                }*/
             },
             //支付时间
             payTime:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field:'payTime'
+                field:'payTime',
+                /*get(){
+                    return moment(this.getDataValue('payTime')).format('YYYY-MM-DD HH:mm:ss');
+                }*/
             },
             editTime:{
                 type: DataTypes.STRING,
                 allowNull: true,
-                field:'editTime'
+                field:'editTime',
+                /*get(){
+                    return moment(this.getDataValue('editTime')).format('YYYY-MM-DD HH:mm:ss');
+                }*/
             },
             //交易来源
             tradeOrigin:{
@@ -62,13 +71,13 @@ module.exports = function(sequelize,DataTypes){
             },
             //类型 收入OR支出
             payType:{
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: true,
                 field: 'payType',
             },
             //状态
             status:{
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 allowNull: true,
                 field: 'status',
             },
