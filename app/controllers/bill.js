@@ -1,5 +1,5 @@
 const BillModel = require("../modules/bill");
-
+const resp =require('../util/response');
 class BillController {
     /**
      * 添加账单
@@ -47,12 +47,13 @@ class BillController {
             pageSize=ctx.request.body.pageSize===undefined?8:ctx.request.body.pageSize;
         try {
             let data= await BillModel.getAll(pageSize,currentPage);
-            ctx.response.status = 200;
+            resp(ctx,200,"查询成功",data);
+            /*ctx.response.status = 200;
             ctx.body = {
                 code: 200,
                 message: `查询列表`,
                 data:data
-            }
+            }*/
         }catch (e) {
             console.log(e);
         }
