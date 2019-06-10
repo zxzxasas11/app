@@ -3,6 +3,7 @@ const Router = require('koa-router');
 const UserController = require('../app/controllers/user');
 const BillController = require('../app/controllers/bill');
 const MenuController = require('../app/controllers/menu');
+const UploadController =require('../app/controllers/uploadFile');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -29,4 +30,10 @@ router.post("/bill/delete",BillController.deleteById);
 router.get("/menu/getAll",MenuController.getAll);
 router.get("/menu/getByMenuPid",MenuController.geyOneByMenuPid);
 router.post("/menu/addMenu",MenuController.create);
+
+
+/**
+ * 上传文件
+ */
+router.post("/file/upload",UploadController.upload);
 module.exports = router;
