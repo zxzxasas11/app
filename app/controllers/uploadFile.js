@@ -8,8 +8,14 @@ class UploadFileController {
      */
     static async upload(ctx){
         console.log(ctx.req.file.path);
+        let url = ctx.req.file.path;
+        let arr = url.split("upload")[1].replace(/\\/g,'/');
         if (ctx.req.file){
-            ctx.body = 'upload success';
+            ctx.body = {
+                code:200,
+                msg:'upload success',
+                data:arr
+            };
         } else {
             ctx.body = 'upload error';
         }

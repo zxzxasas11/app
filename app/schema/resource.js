@@ -13,6 +13,12 @@ module.exports = function(sequelize,DataTypes){
                 allowNull: true,
                 field: 'resource_name',
             },
+            //备注
+            content:{
+                type: DataTypes.STRING,
+                allowNull: true,
+                field: 'content',
+            },
             //菜单名称
             categoryId:{
                 type: DataTypes.STRING,
@@ -26,7 +32,7 @@ module.exports = function(sequelize,DataTypes){
                 field: 'category_url',
             },
             createTime:{
-                type: DataTypes.DATETIME,
+                type: DataTypes.DATE,
                 allowNull: true,
                 field: 'create_time',
             },

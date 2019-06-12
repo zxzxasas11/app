@@ -6,6 +6,8 @@ const UserController = require('../app/controllers/user');
 const BillController = require('../app/controllers/bill');
 const MenuController = require('../app/controllers/menu');
 const UploadController =require('../app/controllers/uploadFile');
+const ResourceController =require('../app/controllers/resource');
+const CategoryController = require('../app/controllers/category');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -35,11 +37,28 @@ router.post("/menu/addMenu",MenuController.create);
 
 
 /**
+ *分类接口
+ *
+ */
+router.post("/category/add",CategoryController.create);
+router.get("/category/getByPid",CategoryController.getByPid);
+router.get("/category/getAll",CategoryController.getAll);
+
+
+/**
+ * 上传资源
+ *
+ *
+ */
+router.post("/resource/add",ResourceController.create);
+
+
+/**
  * 上传文件
  */
 
 let date =new Date();
-let uploadPath = "G:\\upload\\"+date.getFullYear().toString()+(date.getMonth()+1).toString()+date.getDate();
+let uploadPath = "G:/upload/"+date.getFullYear().toString()+(date.getMonth()+1).toString()+date.getDate();
 let storage = multer.diskStorage({
   destination: path.resolve(uploadPath),
   filename: (ctx, file, cb)=>{

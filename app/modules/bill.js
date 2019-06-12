@@ -33,7 +33,6 @@ class BillModel {
      * @returns {Promise<*>}
      */
     static async getAll(pageSize,currentPage){
-        //let pageSize=8,currentPage=1;
         return await Bill.findAndCountAll({
             'limit':pageSize,
             'offset':pageSize*(currentPage-1)

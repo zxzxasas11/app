@@ -102,7 +102,7 @@ class UserController {
             ctx.body = {
                 code: 403,
                 message: "用户不存在"
-            }
+            };
             return false;
         }
         if (bcrypt.compareSync(password, userDetail.password)){
