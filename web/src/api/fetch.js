@@ -22,7 +22,7 @@ axios.interceptors.request.use(config => {
 
   // 获取token
   //config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
-  config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+  config.headers.common['Authorization'] = 'Bearer' + localStorage.getItem("token");
   return config
 
 }, error => {

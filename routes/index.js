@@ -51,7 +51,7 @@ router.get("/category/getAll",CategoryController.getAll);
  *
  */
 router.post("/resource/add",ResourceController.create);
-
+router.get("/resource/getById",ResourceController.getById);
 
 /**
  * 上传文件

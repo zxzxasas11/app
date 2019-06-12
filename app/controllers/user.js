@@ -113,9 +113,6 @@ class UserController {
                 code: 200,
                 message: "登录成功",
                 data: {
-                    userId: userDetail.userId,
-                    username: userDetail.username,
-                    code: userDetail.code,
                     token: token
                 }
             }

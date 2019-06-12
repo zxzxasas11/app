@@ -16,6 +16,8 @@ class ResourceModel {
      * @returns {Promise<boolean>}
      */
     static async create(resource) {
+        let token = ctx.request.header.authorization;
+        console.log(token);
         let {resourceName,content,categoryId,url,creator} = resource;
         resource.resourceId = UUID.v1().replace(/-/g,"");
         resource.createTime = new Date();
@@ -23,6 +25,19 @@ class ResourceModel {
         return await Resource.create(resource);
     }
 
+
+    /**
+     * 根据categoryId查询
+     * @param categoryId
+     * @returns {Promise<*>}
+     */
+    static async getById(categoryId){
+        return await Resource.findAndCountAll({
+            where:{
+                categoryId
+            },
+        })
+    }
 }
 
 module.exports = ResourceModel;
