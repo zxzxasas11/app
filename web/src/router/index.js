@@ -16,6 +16,13 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: '主页',
+      component(resolve) {
+        require(['../view/front/Home.vue'], resolve);
+      },
+    },
+    {
+      path: '/Login',
       name: 'Login',
       component(resolve) {
         require(['../view/Login.vue'], resolve);
