@@ -1,5 +1,7 @@
-
+const multer = require('koa-multer');
+const path = require('path');
 const Router = require('koa-router');
+const UUID = require('uuid');
 const UserController = require('../app/controllers/user');
 const BillController = require('../app/controllers/bill');
 const MenuController = require('../app/controllers/menu');
@@ -35,5 +37,24 @@ router.post("/menu/addMenu",MenuController.create);
 /**
  * 上传文件
  */
-router.post("/file/upload",UploadController.upload);
+
+let date =new Date();
+let uploadPath = "G:\\upload\\"+date.getFullYear().toString()+(date.getMonth()+1).toString()+date.getDate();
+let storage = multer.diskStorage({
+  destination: path.resolve(uploadPath),
+  filename: (ctx, file, cb)=>{
+    cb(null, UUID.v1().replace(/-/g,"")+"."+file.originalname.split(".")[1]);
+  }
+});
+let fileFilter = (ctx, file ,cb)=>{
+//过滤上传的后缀为txt的文件
+  if (file.originalname.split('.').splice(-1) == 'txt'){
+    cb(null, false);
+  }else {
+    cb(null, true);
+  }
+}
+let upload = multer({ storage: storage, fileFilter: fileFilter });
+
+router.post('/upload', upload.single('file'), UploadController.upload);
 module.exports = router;
