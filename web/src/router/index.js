@@ -36,6 +36,22 @@ export default new Router({
       },
     },
     {
+      path: '/CreationCenter',
+      name: '创作中心',
+      component(resolve) {
+        require(['../view/contribute/CreationCenter.vue'], resolve);
+      },
+      children:[
+        {
+          path: '/CreationCenter/Contribute',
+          name: '投稿',
+          component(resolve) {
+            require(['../view/contribute/Contribute.vue'], resolve);
+          },
+        },
+      ]
+    },
+    {
       path: '/Main',
       name: '后台管理',
       component(resolve) {

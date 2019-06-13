@@ -109,22 +109,25 @@ export default {
         })
     })
   },
+  /**
+   * 封装get方法
+   * @param url
+   * @param params
+   * @returns {Promise}
+   */
 
-  get(url, params = {}) {
+
+  get(url, params={}) {
     return new Promise((resolve,reject) => {
-      axios({
-        url:url,
-        method:"GET",
-        params:params,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
+      axios.get(url,{
+        params:params
       })
-        .then(response => {
-          resolve(response.data);
-        },err => {
-          reject(err)
-        })
+          .then(response => {
+            resolve(response.data);
+          })
+          .catch(err => {
+            reject(err)
+          })
     })
   },
   json(url, params = {}) {

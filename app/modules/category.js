@@ -40,10 +40,7 @@ class CategoryModel {
         return await Category.findAndCountAll({
             where:{
                 /*categoryPid*/
-                categoryPid: {
-                    // 模糊查询
-                    [Op.like]:'%' +categoryPid + '%'
-                }
+                categoryPid
             },
         })
     }
