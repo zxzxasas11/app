@@ -20,6 +20,15 @@ export default new Router({
       component(resolve) {
         require(['../view/front/Home.vue'], resolve);
       },
+      children:[
+        {
+          path: '/Column/:categoryId',
+          name: '栏目',
+          component(resolve) {
+            require(['../view/video/Column.vue'], resolve);
+          },
+        },
+      ]
     },
     {
       path: '/Login',

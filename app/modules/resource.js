@@ -30,12 +30,14 @@ class ResourceModel {
     /**
      * 根据categoryId查询
      * @param categoryId
+     * @param status
      * @returns {Promise<*>}
      */
-    static async getById(categoryId){
+    static async getById(categoryId,status){
         return await Resource.findAndCountAll({
             where:{
-                categoryId
+                categoryId,
+                status
             },
         })
     }

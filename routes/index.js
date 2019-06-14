@@ -42,6 +42,7 @@ router.post("/menu/addMenu",MenuController.create);
  */
 router.post("/category/add",CategoryController.create);
 router.get("/category/getByPid",CategoryController.getByPid);
+router.get("/category/getById",CategoryController.getById);
 router.get("/category/getAll",CategoryController.getAll);
 
 

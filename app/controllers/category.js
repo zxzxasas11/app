@@ -47,6 +47,22 @@ class CategoryController {
             data:data
         };
     }
+
+    /**
+     * 根据categoryId查询
+     * @param ctx categoryId
+     * @returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async getById(ctx){
+        let categoryId = ctx.request.query.categoryId;
+        let data = await CategoryModel.getById(categoryId);
+        ctx.response.status = 200;
+        ctx.body = {
+            code: 200,
+            message: `查询结果`,
+            data:data
+        };
+    }
 }
 
 module.exports = CategoryController;

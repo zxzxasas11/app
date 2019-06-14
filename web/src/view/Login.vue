@@ -63,7 +63,7 @@
               this.userLogin(this.loginForm).then(res=>{
                 if(res.code===200){
                   this.$message("登陆成功");
-                  this.$router.push("/Home");
+                  this.$router.push("/");
                   localStorage.setItem("token",res.data.token);
                 }
               });

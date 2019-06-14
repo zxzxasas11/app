@@ -6,6 +6,9 @@ export default {
     },
     getCategoryByPid(params){
         return fetch.get('/category/getByPid',params)
+    },
+    getCategoryById(params){
+        return fetch.get('/category/getById',params)
     }
 
 }

@@ -22,10 +22,10 @@
         </div>
         <ul class="category" v-if="$route.path.indexOf('/CreationCenter')<0">
             <li v-for="c in category">
-                {{c.categoryName}}
+                <router-link :to="'/category/'+c.categoryId">{{c.categoryName}}</router-link>
                 <ul class="second-category">
                     <li v-for="a in c.children">
-                        {{a.categoryName}}
+                        <router-link :to="'/column/'+a.categoryId">{{a.categoryName}}</router-link>
                     </li>
                 </ul>
             </li>
@@ -35,21 +35,22 @@
 
 <script>
     import categoryFunction from '../../api/category'
+
     export default {
         name: "Header",
-        data(){
-            return{
-                category:[]
+        data() {
+            return {
+                category: []
             }
         },
-        created(){
+        created() {
             this.getMenu();
-            console.log(this.$store.getters.getToken)
         },
-        methods:{
-            getMenu(){
-                categoryFunction.getAllCategory().then(res=>{
-                    this.category=this.common.listToTree(res.data.rows,"0","categoryPid","categoryId");
+        methods: {
+            getMenu() {
+                categoryFunction.getAllCategory().then(res => {
+                    this.category = this.common.listToTree(res.data.rows, "0", "categoryPid", "categoryId");
+                    console.log(this.category);
                 })
             }
         }
@@ -57,39 +58,55 @@
 </script>
 
 <style scoped lang="less">
-    .header{
-        width:100%;
-        .header-nav{
-            height:40px;
+    .header {
+        width: 100%;
+
+        .header-nav {
+            height: 40px;
             line-height: 40px;
-            padding:0 10%;
+            padding: 0 10%;
             background-color: rgba(62, 255, 162, 0.1);
-            .contribute{
-                height:45px;
-                width:50px;
+
+            .contribute {
+                height: 45px;
+                width: 50px;
                 background-color: #fb4278;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
             }
         }
     }
-.category{
-    display: flex;
-    padding:0 10%;
-    >li{
-        flex:1;
-        max-width:100px;
-        ul{
-            display: none;
-            li{
+
+    .category {
+        display: flex;
+        padding: 0 10%;
+
+        > li {
+            flex: 1;
+            max-width: 100px;
+            position: relative;
+            ul {
+                display: none;
+                position: absolute;
+                left:0;
+                top:20px;
+                li {
+                }
+            }
+        }
+
+        > li:hover {
+            ul {
+                display: inline-block;
             }
         }
     }
-    >li:hover{
-        ul{
-            display: inline-block;
+
+    .second-category {
+        li {
+            height: 40px;
+            line-height: 40px;
+
         }
     }
-
-}
 </style>

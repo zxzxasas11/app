@@ -13,7 +13,6 @@ const getters ={
         if(localStorage.getItem("token")){
             decode = jwt_decode(localStorage.getItem("token"));
         }
-
         return decode;
     },
     getKeepAlive:state => state.tags.keepAlive,

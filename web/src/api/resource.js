@@ -9,5 +9,9 @@ export default {
     //资源信息入库
     resourceAdd(params){
         return fetch.post("/resource/add",params);
+    },
+
+    getByCategoryId(params){
+        return fetch.get("/resource/getById",params);
     }
 }

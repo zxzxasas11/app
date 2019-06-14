@@ -44,6 +44,20 @@ class CategoryModel {
             },
         })
     }
+
+    /**
+     * 根据categoryId查询单条
+     * @param categoryId
+     * @returns {promise<*>}
+     */
+    static async getById(categoryId){
+        return await Category.findOne({
+            where:{
+                categoryId
+            }
+        })
+    }
+
 }
 
 module.exports = CategoryModel;
