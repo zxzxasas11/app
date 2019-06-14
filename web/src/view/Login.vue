@@ -64,6 +64,7 @@
                 if(res.code===200){
                   this.$message("登陆成功");
                   this.$router.push("/Home");
+                  localStorage.setItem("token",res.data.token);
                 }
               });
             },

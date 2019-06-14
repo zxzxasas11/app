@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode'
 const getters ={
     visitedViews:state => state.tags.visitedViews,
     getUserName(state){
@@ -8,10 +9,12 @@ const getters ={
     },
     activeIndex:state => state.tags.activeIndex,
     getToken(state){
-        if(state.user.token===""||state.user.token==null||!state.user.token){
-            state.user.token = sessionStorage.getItem("token");
+        let decode;
+        if(localStorage.getItem("token")){
+            decode = jwt_decode(localStorage.getItem("token"));
         }
-        return state.user.token;
+
+        return decode;
     },
     getKeepAlive:state => state.tags.keepAlive,
 

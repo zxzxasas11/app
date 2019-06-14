@@ -8,17 +8,25 @@ const logger = require('koa-logger');
 const path = require('path');
 const index = require('./routes/index');
 const cors = require('koa2-cors');
+const jwt = require('koa-jwt')
+const JWTToken = require('./app/middleware/JWTToken');
+const secret = require('./config/secret');
+const JWTPath = require('./app/middleware/JWTPath')
 app.use(cors()) //使用cors
 const multer = require('koa-multer');
 // error handler
 onerror(app);
-
+app.use(JWTToken());
+//设置过滤器
+app.use(jwt({secret: secret.sign}).unless({
+  path:JWTPath
+}));
 
 
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
-}))
+}));
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
