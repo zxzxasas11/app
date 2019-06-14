@@ -30,6 +30,11 @@ module.exports = function(sequelize,DataTypes){
                 allowNull: true,
                 field: 'createTime',
             },
+            power:{
+                type: DataTypes.INTEGER,
+                allowNull: true,
+                field: 'power',
+            },
         }
         ,{
             /**

@@ -1,7 +1,10 @@
 <template>
     <div class="header">
         <div class="header-nav">
-            <div></div>
+            <div class="fl">
+                <router-link to="/">主站</router-link>
+            </div>
+
             <div class="fr contribute">
                 <router-link to="/CreationCenter/Contribute">投稿</router-link>
             </div>

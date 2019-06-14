@@ -16,8 +16,8 @@ class ResourceModel {
      * @returns {Promise<boolean>}
      */
     static async create(resource) {
-        let token = ctx.request.header.authorization;
-        console.log(token);
+        //let token = ctx.request.header.authorization;
+        //console.log(token);
         let {resourceName,content,categoryId,url,creator} = resource;
         resource.resourceId = UUID.v1().replace(/-/g,"");
         resource.createTime = new Date();

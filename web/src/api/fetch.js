@@ -144,6 +144,20 @@ export default {
           })
     })
   },
+  upload(url,data){
+    return new Promise((resolve,reject) => {
+      axios.post(url,data,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+      })
+          .then(response => {
+            resolve(response.data);
+          },err => {
+            reject(err)
+          })
+    })
+  },
 
   delete(url, params = {}) {
     let {isLoading = true} = params;

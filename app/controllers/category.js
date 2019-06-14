@@ -38,9 +38,7 @@ class CategoryController {
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async getByPid(ctx){
-        let categoryPid = ctx.request.body.categoryPid;
-        console.log(ctx.request.body);
-        console.log(categoryPid);
+        let categoryPid = ctx.request.query.categoryPid;
         let data = await CategoryModel.getByPid(categoryPid);
         ctx.response.status = 200;
         ctx.body = {
