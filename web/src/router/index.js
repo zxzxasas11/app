@@ -28,6 +28,13 @@ export default new Router({
             require(['../view/video/Column.vue'], resolve);
           },
         },
+        {
+          path: '/Video/:categoryId/:resourceId',
+          name: '视频播放',
+          component(resolve) {
+            require(['../view/video/VideoPlay.vue'], resolve);
+          },
+        },
       ]
     },
     {

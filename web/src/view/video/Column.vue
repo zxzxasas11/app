@@ -3,7 +3,7 @@
         <h1>{{columnInfo.categoryName}}</h1>
 
         <div class="video-box">
-            <div v-for="v in videoList">
+            <div v-for="v in videoList" @click="openVideo(v)">
                 {{v.resourceName}}
                 {{v.content}}
                 {{common.formDataToHms(v.createTime)}}
@@ -39,6 +39,9 @@
                 categoryFunction.getCategoryById(data).then(res=>{
                     this.columnInfo=res.data;
                 })
+            },
+            openVideo(v){
+                window.open("/Video/"+v.categoryId+"/"+v.resourceId);
             }
         },
         watch:{
