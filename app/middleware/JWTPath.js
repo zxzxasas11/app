@@ -8,5 +8,5 @@ module.exports = [
     "/api/v1/user/login",
     "/api/v1/category/list",
     "/api/v1/category/article/list",
-    "/api/v1/category/article",
+    "/api/v1/category/getAll",
 ]

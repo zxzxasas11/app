@@ -2,7 +2,7 @@ import qs from 'qs'
 import Vue from 'vue'
 import store from '../store/index'
 import axios from 'axios';
-
+import router from '../router'
 
 const url = process.env.NODE_ENV === 'development'
   // 测试环境api接口
@@ -22,7 +22,7 @@ axios.interceptors.request.use(config => {
 
   // 获取token
   //config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
-  config.headers.common['Authorization'] = 'Bearer' + localStorage.getItem("token");
+  config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
   return config
 
 }, error => {
@@ -55,7 +55,9 @@ axios.interceptors.response.use(response => {
   switch (code) {
     case 401:
       // 处理401错误
-      alert(res.data.message);
+        router.replace("/");
+        localStorage.removeItem("token");
+      //alert(res.data.message);
       break;
 
     case 404:
@@ -63,7 +65,7 @@ axios.interceptors.response.use(response => {
       break;
 
     case 412:
-      alert(res.data.message)
+      alert(code)
       break;
 
     case 422:
@@ -81,11 +83,11 @@ axios.interceptors.response.use(response => {
       break;
 
     case 500:
-      alert(res.data.message)
+      alert(code)
       break;
 
     default:
-      alert(res.data.message)
+      alert(code)
   }
 
   // 关闭loading

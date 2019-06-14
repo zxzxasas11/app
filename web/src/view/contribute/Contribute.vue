@@ -59,7 +59,6 @@
                     content: "",
                     categoryId: "",
                     url: "",
-                    creator: "370ace00841711e9a5e687bbf4056c58"
                 }
             }
         },
@@ -85,12 +84,19 @@
             },
             //上传事件
             upload() {
+                if(this.fileList.length===0){
+                    this.$message("请选择文件");
+                    return false;
+                }
                 let upload = new FormData();
                 upload.append("file", this.fileList[0].raw);
                 resourceFunction.upload(upload).then(res => {
                     this.resourceAdd.url = res.data;
                     resourceFunction.resourceAdd(this.resourceAdd).then(response=>{
                         console.log(response);
+                        if(response.code===200){
+                            this.$message("上传成功，请等待审核");
+                        }
                     })
                 });
 

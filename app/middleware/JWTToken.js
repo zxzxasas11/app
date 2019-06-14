@@ -20,12 +20,13 @@ module.exports = function () {
 
         try {
             // 获取jwt
-            const token = ctx.header.authorization
+            const token = ctx.header.authorization;
+
             if (token) {
                 let payload
                 try {
                     // 解密payload，获取用户名和ID
-                    payload = await verify(token.split(' ')[1], secret.sign)
+                    payload = await verify(token.split(' ')[1], secret.sign);
                     ctx.user = {
                         code: payload.code,
                         userId: payload.userId,

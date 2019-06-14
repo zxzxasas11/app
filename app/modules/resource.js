@@ -13,9 +13,10 @@ class ResourceModel {
     /**
      * 上传资源
      * @param resource
+     * @param ctx
      * @returns {Promise<boolean>}
      */
-    static async create(resource) {
+    static async create(resource,ctx) {
         //let token = ctx.request.header.authorization;
         //console.log(token);
         let {resourceName,content,categoryId,url,creator} = resource;

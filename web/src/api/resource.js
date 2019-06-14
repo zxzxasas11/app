@@ -10,5 +10,4 @@ export default {
     resourceAdd(params){
         return fetch.post("/resource/add",params);
     }
-
 }

@@ -9,6 +9,7 @@ class ResourceController {
      */
     static async create(ctx){
         let resource = ctx.request.body;
+        resource.creator = ctx.user.userId;
         await ResourceModel.create(resource);
         ctx.response.status = 200;
         ctx.body = {
