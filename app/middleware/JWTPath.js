@@ -9,4 +9,5 @@ module.exports = [
     "/api/v1/category/list",
     "/api/v1/category/article/list",
     "/api/v1/category/getAll",
+    "/api/v1/upload",
 ]

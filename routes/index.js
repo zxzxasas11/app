@@ -81,7 +81,7 @@ let fileFilter = (ctx, file ,cb)=>{
   }else {
     cb(null, true);
   }
-}
+};
 let upload = multer({ storage: storage, fileFilter: fileFilter });
 
 router.post('/upload', upload.single('file'), UploadController.upload);

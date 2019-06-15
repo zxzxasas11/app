@@ -41,6 +41,20 @@ class ResourceModel {
             },
         })
     }
+
+    /**
+     * 修改资源上传状态
+     * @param url
+     * @param data
+     */
+    static async update(url,data){
+        return await Resource.update(data,{
+            where:{
+                url
+            },
+            fields:['status']
+        })
+    }
 }
 
 module.exports = ResourceModel;
