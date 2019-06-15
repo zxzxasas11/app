@@ -106,7 +106,7 @@ class UserController {
             return false;
         }
         if (bcrypt.compareSync(password, userDetail.password)){
-            const userToken ={code:userDetail.code,userId:userDetail.userId,username:userDetail.username};
+            const userToken ={code:userDetail.code,userId:userDetail.userId,username:userDetail.username,power:userDetail.power};
             const token =jwt.sign(userToken,secret.sign,{expiresIn:"1h"});
             ctx.response.status = 200;
             ctx.body = {

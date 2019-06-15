@@ -33,12 +33,12 @@ const user ={
      * @return {Promise<void>}
      */
     async userLogin({state, commit}, params) {
-      /*let data = await users.login(params).then(res=>{
+      let data = await users.login(params).then(res=>{
         commit("SET_USERINFO",res.data.token);
-      });*/
+      });
 
-      let ret = await users.login(params);
-      return ret;
+      //let ret = await users.login(params);
+      return data;
     },
 
   }

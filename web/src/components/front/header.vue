@@ -6,7 +6,8 @@
             </div>
 
             <div class="fr contribute">
-                <router-link to="/CreationCenter/Contribute">投稿</router-link>
+                <router-link to="/CreationCenter/Contribute" v-if="$store.getters.getToken.power===0">投稿</router-link>
+                <router-link to="/CreationCenter/Audit" v-else>投稿中心</router-link>
             </div>
             <div class="fr">
                 <router-link to="/history">历史</router-link>
@@ -45,6 +46,7 @@
         },
         created() {
             this.getMenu();
+            console.log(this.$store.getters.getToken);
         },
         methods: {
             getMenu() {
@@ -69,7 +71,7 @@
 
             .contribute {
                 height: 45px;
-                width: 50px;
+                min-width: 50px;
                 background-color: #fb4278;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;

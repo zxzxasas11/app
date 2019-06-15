@@ -65,6 +65,13 @@ export default new Router({
             require(['../view/contribute/Contribute.vue'], resolve);
           },
         },
+        {
+          path: '/CreationCenter/Audit',
+          name: '视频审批',
+          component(resolve) {
+            require(['../view/contribute/Audit.vue'], resolve);
+          },
+        },
       ]
     },
     {

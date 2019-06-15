@@ -3,6 +3,7 @@
         <h1>{{columnInfo.categoryName}}</h1>
 
         <div class="video-box">
+            <div v-if="videoList.length===0">暂无数据</div>
             <div v-for="v in videoList" @click="openVideo(v)">
                 {{v.resourceName}}
                 {{v.content}}
@@ -29,7 +30,7 @@
         },
         methods:{
             getVideo(categoryId){
-                let data = {categoryId:categoryId,status:1};
+                let data = {categoryId:categoryId,status:2};
                 resourceFunction.getByCategoryId(data).then(res=>{
                     this.videoList = res.data.rows;
                 })
