@@ -11,7 +11,7 @@ class UploadFileController {
     static async upload(ctx){
         let url = ctx.req.file.path;
         let arr = url.split("upload")[1].replace(/\\/g,'/');
-        let urlData = arr.split(",")[0]+".mp4";
+        let urlData = arr.split(".")[0]+".mp4";
         if (ctx.req.file){
             ctx.body = {
                 code:200,
