@@ -8,6 +8,7 @@ const MenuController = require('../app/controllers/menu');
 const UploadController =require('../app/controllers/uploadFile');
 const ResourceController =require('../app/controllers/resource');
 const CategoryController = require('../app/controllers/category');
+const BarrageController = require('../app/controllers/barrage');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -53,6 +54,13 @@ router.get("/category/getAll",CategoryController.getAll);
  */
 router.post("/resource/add",ResourceController.create);
 router.get("/resource/getById",ResourceController.getById);
+
+
+/**
+ * 弹幕接口
+ *
+ */
+router.post("/barrage/add",BarrageController.create);
 
 /**
  * 上传文件
