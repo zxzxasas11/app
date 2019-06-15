@@ -30,8 +30,9 @@
         },
         methods:{
             getVideo(categoryId){
-                let data = {categoryId:categoryId,status:2};
+                let data = {categoryId:categoryId,status:1};
                 resourceFunction.getByCategoryId(data).then(res=>{
+                    console.log(res);
                     this.videoList = res.data.rows;
                 })
             },

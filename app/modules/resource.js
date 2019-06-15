@@ -7,6 +7,10 @@ const Sequelize = db.sequelize;
 
 // 引入数据表模型
 const Resource = Sequelize.import('../schema/resource');
+const Category = Sequelize.import('../schema/category');
+//Category.hasMany(Resource); // 将会添加 category_id 到 ArticleModel 模型
+Resource.belongsTo(Category, {foreignKey: 'categoryId', targetKey: 'categoryId',as: 'u' });
+
 Resource.sync({force: false}); //自动创建表
 const Op = Sequelize.Op;
 class ResourceModel {
@@ -34,12 +38,25 @@ class ResourceModel {
      * @returns {Promise<*>}
      */
     static async getById(categoryId,status){
-        return await Resource.findAndCountAll({
-            where:{
-                categoryId,
-                status
-            },
-        })
+        try {
+            return await Resource.findAndCountAll({
+                where:{
+                    categoryId,
+                    status
+                },
+                include:[{
+                    model:Category,
+                    as:'u',
+                    attributes:[]
+                }],
+                attributes: [[Sequelize.col('u.category_name'),'categoryName'],'categoryId','content','createTime','creator','resourceId','resourceName','status','url'],
+                raw:true
+            })
+        }
+        catch (e) {
+            console.log(e)
+        }
+
     }
 
     /**
