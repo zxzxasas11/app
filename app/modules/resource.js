@@ -41,16 +41,19 @@ class ResourceModel {
         try {
             return await Resource.findAndCountAll({
                 where:{
-                    categoryId,
-                    status
+                    categoryId:{
+                        [Op.like]:categoryId!==undefined?'%' +categoryId + '%':''
+                    },
+                    //categoryId:categoryId!==undefined?categoryId:null,
+                    status,
                 },
-                include:[{
+                /*include:[{
                     model:Category,
                     as:'u',
                     attributes:[]
                 }],
                 attributes: [[Sequelize.col('u.category_name'),'categoryName'],'categoryId','content','createTime','creator','resourceId','resourceName','status','url'],
-                raw:true
+                raw:true*/
             })
         }
         catch (e) {
