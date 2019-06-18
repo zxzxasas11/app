@@ -13,5 +13,15 @@ export default {
 
     getByCategoryId(params){
         return fetch.get("/resource/getById",params);
+    },
+    ///resource/getByResourceId
+    //查询单条
+    getByResourceId(params){
+        return fetch.get("/resource/getByResourceId",params);
+    },
+
+    //根据resourceId修改
+    updateByResourceId(params){
+        return fetch.post("/resource/updateByResourceId",params);
     }
 }

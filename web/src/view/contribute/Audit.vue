@@ -1,29 +1,31 @@
 <template>
-    <div>
+    <div style="width:100%;">
         <div class="list-title">
             <div></div>
-            <div>题目类型</div>
-            <div>题目难度</div>
-            <div>章节名称</div>
-            <div>题目名称</div>
-            <div></div>
+            <div>视频名称</div>
+            <div>视频介绍</div>
+            <div>投稿人</div>
+            <div>投稿时间</div>
+            <div>投稿分区</div>
+            <div>操作</div>
         </div>
 
         <div class="list" v-for="(l,index) in list">
             <div>{{index+1}}</div>
-            <div>{{l.type}}</div>
-            <div>{{l.difficulty}}</div>
-            <div>{{l.catagory}}</div>
-            <div :title="l.name">{{l.name|lengthControll}}</div>
+            <div>{{l.resourceName}}</div>
+            <div>{{l.content}}</div>
+            <div>{{l.username}}</div>
+            <div>{{common.formDataToHms(l.createTime)}}</div>
+            <div>{{l.categoryName}}</div>
             <div>
-                <button class="check-btn" @click="editQuestion(l)">修改</button>
-                <button class="check-btn" @click="deleteQuestion(l)">删除</button>
+                <button class="check-btn" @click="auditVideo(l)">查看</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import resourceFunction from '../../api/resource'
     export default {
         name: "Audit",
         data(){
@@ -32,10 +34,18 @@
             }
         },
         created() {
+            this.getList();
         },
         methods:{
             getList(){
-
+                let data = {status:1};
+                resourceFunction.getByCategoryId(data).then(res=>{
+                    console.log(res);
+                    this.list = res.data.rows;
+                })
+            },
+            auditVideo(l){
+                this.$router.push("/CreationCenter/AuditPlay/"+l.resourceId)
             }
         }
     }
@@ -43,5 +53,7 @@
 
 <style scoped lang="less">
     @import '../../assets/css/table.less';
+
+
 
 </style>

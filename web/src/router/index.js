@@ -72,6 +72,13 @@ export default new Router({
             require(['../view/contribute/Audit.vue'], resolve);
           },
         },
+        {
+          path: '/CreationCenter/AuditPlay/:resourceId',
+          name: '视频审批播放',
+          component(resolve) {
+            require(['../view/contribute/AuditPlay.vue'], resolve);
+          },
+        },
       ]
     },
     {

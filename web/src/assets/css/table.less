@@ -6,28 +6,27 @@
   border-bottom: 1px solid #dddddd;
 }
 
-/*.list:nth-child(odd), .list-title {
+/*
+.list:nth-child(even), .list-title {
   background-color: #edf5ff;
-}*/
+}
+*/
 
 .list-title, .list {
   clear: both;
   overflow: hidden;
   display: flex;
   padding: 0 30px;
-  div:first-child{
-    flex:1;
-  }
-  div:last-child{
-    flex:3
-  }
+
   div {
+    float: left;
+    flex: 1;
     text-align: center;
     height: 70px;
-    line-height: 70px;
     align-items: center;
+    display: flex;
     font-size: 14px;
-    flex:2;
+
     img {
       align-items: center;
       cursor: pointer;

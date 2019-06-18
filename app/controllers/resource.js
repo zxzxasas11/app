@@ -33,6 +33,37 @@ class ResourceController {
             data:data
         };
     }
+
+    /**
+     * 根据resourceId查询
+     * @param ctx
+     * @returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async getByResourceId(ctx){
+        let resourceId = ctx.request.query.resourceId;
+        let data = await ResourceModel.getByResourceId(resourceId);
+        ctx.response.status = 200;
+        ctx.body = {
+            code: 200,
+            message: `查询结果`,
+            data:data
+        };
+    }
+
+    /**
+     * 根据resourceId修改
+     * @param ctx
+     * @returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async updateByResourceId(ctx){
+        let resourceId = ctx.request.body.resourceId,data=ctx.request.body.data;
+        await ResourceModel.updateByResourceId(resourceId,data);
+        ctx.response.status = 200;
+        ctx.body = {
+            code: 200,
+            message: `修改成功`,
+        };
+    }
 }
 
 module.exports = ResourceController;

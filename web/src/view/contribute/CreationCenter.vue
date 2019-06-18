@@ -62,7 +62,7 @@
         }
         //右边部分
         .main-box{
-
+            width:calc(100% - @leftWidth - 5px);
         }
     }
 </style>

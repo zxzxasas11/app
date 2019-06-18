@@ -16,6 +16,7 @@ Vue.prototype.$qs = qs;
 import store from './store';
 import common from './assets/js/common';
 Vue.prototype.common = common;
+Vue.prototype.serverIp = "http://192.168.31.226:5000";
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'

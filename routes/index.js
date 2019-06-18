@@ -54,8 +54,8 @@ router.get("/category/getAll",CategoryController.getAll);
  */
 router.post("/resource/add",ResourceController.create);
 router.get("/resource/getById",ResourceController.getById);
-
-
+router.get("/resource/getByResourceId",ResourceController.getByResourceId);
+router.post("/resource/updateByResourceId",ResourceController.updateByResourceId);
 /**
  * 弹幕接口
  *
