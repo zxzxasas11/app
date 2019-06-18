@@ -24,7 +24,7 @@ class ResourceController {
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async getById(ctx){
-        let categoryId = ctx.request.query.categoryId!==undefined?ctx.request.query.categoryId:null,status = ctx.request.query.status;
+        let categoryId = ctx.request.query.categoryId!==undefined?ctx.request.query.categoryId:"",status = ctx.request.query.status;
         let data = await ResourceModel.getById(categoryId,status);
         ctx.response.status = 200;
         ctx.body = {

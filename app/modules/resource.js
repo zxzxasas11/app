@@ -38,11 +38,12 @@ class ResourceModel {
      * @returns {Promise<*>}
      */
     static async getById(categoryId,status){
+
         try {
             return await Resource.findAndCountAll({
                 where:{
                     categoryId:{
-                        [Op.like]:categoryId!==undefined?'%' +categoryId + '%':''
+                        [Op.like]:'%' +categoryId + '%'
                     },
                     //categoryId:categoryId!==undefined?categoryId:null,
                     status,
