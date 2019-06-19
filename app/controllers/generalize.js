@@ -25,11 +25,17 @@ class GeneralizeController {
      * @param ctx
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
+    /*{
+        "resourceId":"4aad92608f2211e9a1c18b5ad7f1eaac1",
+        "info":{
+            "ifCollect":1,
+            "ifThumb":2
+        }
+    }*/
     static async update(ctx){
-        let {resourceId,info} = ctx.request.body;
-        let params ={resourceId,info};
-        params.userId = ctx.user.userId;
-        console.log(params.info);
+        let {resourceId,ifCollect,ifThumb} = ctx.request.body;
+        let params ={resourceId,ifCollect,ifThumb};
+        params.creator = ctx.user.userId;
         let data  = await GeneralizeModel.getInfo(params);
         if(data){
             console.log("查询到了");
@@ -37,6 +43,7 @@ class GeneralizeController {
         }
         else{
             console.log("目前没有数据");
+            await GeneralizeModel.create(params);
 
         }
         /*ctx.response.status=200;

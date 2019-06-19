@@ -34,7 +34,7 @@ class GeneralizeModel {
      */
     static async update(params){
         try {
-            return await Generalize.update(params.info,{
+            return await Generalize.update({ifCollect:params.ifCollect,ifThumb:params.ifThumb},{
                 where:{
                     resourceId:params.resourceId,
                     creator:params.userId
@@ -46,6 +46,17 @@ class GeneralizeModel {
             console.log(e)
         }
 
+    }
+
+    /**
+     * 增加记录
+     * @param params
+     * @returns {Promise<boolean>}
+     */
+    static async create(params) {
+        params.updateTime = new Date();
+        params.generalizeId = UUID.v1().replace(/-/g,"");
+        return await Generalize.create(params);
     }
 
 }
