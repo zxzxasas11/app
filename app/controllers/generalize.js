@@ -39,26 +39,15 @@ class GeneralizeController {
         let data  = await GeneralizeModel.getInfo(params);
         if(data){
             await GeneralizeModel.update(params);
-            ctx.response.status=200;
-            ctx.body={
-                code: 200,
-                message: `success`,
-            }
         }
         else{
             await GeneralizeModel.create(params);
-            ctx.response.status=200;
-            ctx.body={
-                code: 200,
-                message: `success`,
-            }
-
         }
-        /*ctx.response.status=200;
+        ctx.response.status=200;
         ctx.body={
             code: 200,
-            message: `创建成功`,
-        }*/
+            message: `success`,
+        }
     }
 }
 
