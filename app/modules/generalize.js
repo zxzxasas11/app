@@ -29,18 +29,18 @@ class GeneralizeModel {
     }
 
     /**
-     * 修改浏览时间
-     * @param resourceId
-     * @param data
+     * 修改收藏与点赞
+     * @param params
      */
-    static async update(resourceId,data){
+    static async update(params){
         try {
-           /* return await History.update(data,{
+            return await Generalize.update(params.info,{
                 where:{
-                    resourceId
+                    resourceId:params.resourceId,
+                    creator:params.userId
                 },
-                fields:['browseTime']
-            })*/
+                fields:['ifCollect','ifThumb']
+            })
         }
         catch (e) {
             console.log(e)

@@ -26,14 +26,24 @@ class GeneralizeController {
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async update(ctx){
-        let {resourceId} = ctx.request.body;
-        let params ={resourceId};
+        let {resourceId,info} = ctx.request.body;
+        let params ={resourceId,info};
         params.userId = ctx.user.userId;
-        ctx.response.status=200;
+        console.log(params.info);
+        let data  = await GeneralizeModel.getInfo(params);
+        if(data){
+            console.log("查询到了");
+            await GeneralizeModel.update(params);
+        }
+        else{
+            console.log("目前没有数据");
+
+        }
+        /*ctx.response.status=200;
         ctx.body={
             code: 200,
             message: `创建成功`,
-        }
+        }*/
     }
 }
 

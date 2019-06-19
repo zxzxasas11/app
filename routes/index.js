@@ -76,7 +76,7 @@ router.post("/history/add",HistoryController.create);
  *
  */
 router.get("/generalize/getInfo",GeneralizeController.getInfo);
-
+router.post("/generalize/update",GeneralizeController.update);
 
 /**
  * 上传文件
