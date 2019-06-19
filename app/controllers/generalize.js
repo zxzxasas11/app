@@ -38,12 +38,20 @@ class GeneralizeController {
         params.creator = ctx.user.userId;
         let data  = await GeneralizeModel.getInfo(params);
         if(data){
-            console.log("查询到了");
             await GeneralizeModel.update(params);
+            ctx.response.status=200;
+            ctx.body={
+                code: 200,
+                message: `success`,
+            }
         }
         else{
-            console.log("目前没有数据");
             await GeneralizeModel.create(params);
+            ctx.response.status=200;
+            ctx.body={
+                code: 200,
+                message: `success`,
+            }
 
         }
         /*ctx.response.status=200;
