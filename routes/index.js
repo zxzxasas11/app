@@ -9,6 +9,7 @@ const UploadController =require('../app/controllers/uploadFile');
 const ResourceController =require('../app/controllers/resource');
 const CategoryController = require('../app/controllers/category');
 const BarrageController = require('../app/controllers/barrage');
+const HistoryController = require('../app/controllers/history');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -61,6 +62,13 @@ router.post("/resource/updateByResourceId",ResourceController.updateByResourceId
  *
  */
 router.post("/barrage/add",BarrageController.create);
+
+
+/**
+ * 历史记录接口
+ *
+ */
+router.post("/history/add",HistoryController.create);
 
 /**
  * 上传文件

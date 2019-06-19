@@ -9,7 +9,7 @@
             <div>投稿分区</div>
             <div>操作</div>
         </div>
-
+        <div v-if="list.length===0">暂无数据</div>
         <div class="list" v-for="(l,index) in list">
             <div>{{index+1}}</div>
             <div>{{l.resourceName}}</div>
@@ -40,7 +40,6 @@
             getList(){
                 let data = {status:1};
                 resourceFunction.getByCategoryId(data).then(res=>{
-                    console.log(res);
                     this.list = res.data.rows;
                 })
             },
