@@ -10,6 +10,7 @@ const ResourceController =require('../app/controllers/resource');
 const CategoryController = require('../app/controllers/category');
 const BarrageController = require('../app/controllers/barrage');
 const HistoryController = require('../app/controllers/history');
+const GeneralizeController = require('../app/controllers/generalize');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -69,6 +70,13 @@ router.post("/barrage/add",BarrageController.create);
  *
  */
 router.post("/history/add",HistoryController.create);
+
+/**
+ * 收藏点赞接口
+ *
+ */
+router.get("/generalize/getInfo",GeneralizeController.getInfo);
+
 
 /**
  * 上传文件
