@@ -8,6 +8,10 @@
             <el-input  v-model="sendInfo.content" ></el-input>
             <el-button @click="sendBarrage">发送</el-button>
         </div>
+
+        <canvas id="canvas" width="500" height="400" style="position:absolute;top:0;left:0;">
+            您的浏览器不支持canvas标签。
+        </canvas>
     </div>
 </template>
 
@@ -31,6 +35,8 @@
         created() {
             console.log(this.$route.params);
             this.getDetail();
+
+
         },
         mounted(){
             let video =document.querySelector("video");
