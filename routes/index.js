@@ -16,14 +16,14 @@ const router = new Router({
 });
 
 /**
- * 用户接口
+ * user接口
  */
 router.post('/user/register',UserController.create);
 router.get('/user/getAll',UserController.getAll);
 router.get("/user/getOne",UserController.geyOneByName);
 router.post("/user/login",UserController.login);
 /**
- * 账单接口
+ * bill接口
  */
 router.post("/bill/create",BillController.create);
 router.post("/bill/upload",BillController.uploadExcel);
@@ -31,7 +31,7 @@ router.get("/bill/getAll",BillController.getAll);
 router.post("/bill/delete",BillController.deleteById);
 
 /**
- * 菜单接口
+ * menu接口
  *
  */
 router.get("/menu/getAll",MenuController.getAll);
@@ -40,7 +40,7 @@ router.post("/menu/addMenu",MenuController.create);
 
 
 /**
- *分类接口
+ *category接口
  *
  */
 router.post("/category/add",CategoryController.create);
@@ -50,7 +50,7 @@ router.get("/category/getAll",CategoryController.getAll);
 
 
 /**
- * 上传资源
+ * resource接口
  *
  *
  */
@@ -59,20 +59,20 @@ router.get("/resource/getById",ResourceController.getById);
 router.get("/resource/getByResourceId",ResourceController.getByResourceId);
 router.post("/resource/updateByResourceId",ResourceController.updateByResourceId);
 /**
- * 弹幕接口
+ * barrage接口
  *
  */
 router.post("/barrage/add",BarrageController.create);
 
 
 /**
- * 历史记录接口
+ * history接口
  *
  */
 router.post("/history/add",HistoryController.create);
 
 /**
- * 收藏点赞接口
+ * generalize接口
  *
  */
 router.get("/generalize/getInfo",GeneralizeController.getInfo);

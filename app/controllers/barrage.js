@@ -1,14 +1,20 @@
 const BarrageModel = require("../modules/barrage");
 const resp =require('../util/response');
+const UUID = require('uuid');
 class BarrageController {
     /**
-     * 添加账单
-     * @param ctx         账单
+     * 发送弹幕
+     * @param ctx
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async create(ctx){
-        console.log(ctx.request.body);
-        await BarrageModel.create(ctx.request.body);
+        let {resourceId,content,sendTime}=ctx.request.body;
+        let params = {resourceId,content,sendTime};
+        params.barrageId = UUID.v1().replace(/-/g,"");
+        params.creator = ctx.user.userId;
+        params.createTime = new Date();
+        params.status = 1;
+        await BarrageModel.create(params);
         ctx.response.status=200;
         ctx.body={
             code: 200,

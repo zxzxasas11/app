@@ -9,7 +9,7 @@ const getters ={
     },
     activeIndex:state => state.tags.activeIndex,
     getToken(state){
-        let decode;
+        let decode='';
         if(localStorage.getItem("token")){
             decode = jwt_decode(localStorage.getItem("token"));
         }

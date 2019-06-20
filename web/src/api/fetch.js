@@ -3,6 +3,7 @@ import Vue from 'vue'
 import store from '../store/index'
 import axios from 'axios';
 import router from '../router'
+import {Message} from "element-ui";
 
 const url = process.env.NODE_ENV === 'development'
   // 测试环境api接口
@@ -55,9 +56,11 @@ axios.interceptors.response.use(response => {
   switch (code) {
     case 401:
       // 处理401错误
-        router.replace("/");
+        Message.error("登录过期，请重新登录,稍后跳转至登录页面");
         localStorage.removeItem("token");
-      //alert(res.data.message);
+        setTimeout(function(){
+          router.replace("/Login");
+        },3000);
       break;
 
     case 404:

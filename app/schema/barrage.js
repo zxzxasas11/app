@@ -20,11 +20,16 @@ module.exports = function(sequelize,DataTypes){
                 allowNull: true,
                 field: 'content'
             },
-            //交易时间
+            //创建人
             creator:{
                 type: DataTypes.STRING,
                 allowNull: true,
                 field: 'creator',
+            },
+            sendTime:{
+                type: DataTypes.DOUBLE,
+                allowNull: true,
+                field: 'sendTime',
             },
             //创建时间
             createTime:{
