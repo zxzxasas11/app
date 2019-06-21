@@ -36,6 +36,9 @@ module.exports = function(sequelize,DataTypes){
                 type: DataTypes.DATE,
                 allowNull: true,
                 field:'createTime',
+                get() {
+                    return moment(this.getDataValue('createTime')).format('YYYY-MM-DD HH:mm:ss');
+                }
             },
             //状态
             status:{

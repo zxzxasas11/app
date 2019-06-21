@@ -25,6 +25,9 @@ module.exports = function(sequelize,DataTypes){
                 type: DataTypes.DATE,
                 allowNull: true,
                 field: 'browseTime',
+                get() {
+                    return moment(this.getDataValue('browseTime')).format('YYYY-MM-DD HH:mm:ss');
+                }
             },
         }
         ,{

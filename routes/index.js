@@ -63,6 +63,7 @@ router.post("/resource/updateByResourceId",ResourceController.updateByResourceId
  *
  */
 router.post("/barrage/add",BarrageController.create);
+router.get("/barrage/getAll",BarrageController.getAll);
 
 
 /**

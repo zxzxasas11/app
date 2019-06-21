@@ -60,7 +60,22 @@ class HistoryModel {
         catch (e) {
             console.log(e)
         }
+    }
 
+    /**
+     * 查询历史记录
+     * @returns {Promise<*>}
+     */
+    static async getAll(params){
+        let pageSize = params.pageSize!==undefined?parseInt(params.pageSize):20;
+        let currentPage = params.currentPage!==undefined?parseInt(params.currentPage):1;
+        return await History.findAndCountAll({
+            'limit':pageSize,
+            'offset':pageSize*(currentPage-1),
+            'order': [
+                ['browseTime', 'DESC']
+            ],
+        });
     }
 }
 

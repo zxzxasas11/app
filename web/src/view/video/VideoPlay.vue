@@ -4,9 +4,9 @@
         <el-button></el-button>
         <el-button @click="collect">收藏</el-button>
         <el-button></el-button>
-        <div v-if="sendVisible">
-            <el-input  v-model="sendInfo.content" ></el-input>
-            <el-button @click="sendBarrage">发送</el-button>
+        <div v-if="sendVisible" class="overflow_hide">
+            <el-input  v-model="sendInfo.content" class="fl"></el-input>
+            <el-button @click="sendBarrage" class="fr">发送</el-button>
         </div>
 
         <canvas id="canvas" width="500" height="400" style="position:absolute;top:0;left:0;">
@@ -18,6 +18,7 @@
 <script>
     import resourceFunction from '../../api/resource'
     import barrageFunction from '../../api/barrage'
+    import historyFunction from '../../api/history'
     export default {
         name: "VideoPlay",
         data(){
@@ -33,14 +34,12 @@
             }
         },
         created() {
-            console.log(this.$route.params);
             this.getDetail();
-
-
+            //添加历史记录
+            this.addHistory();
         },
         mounted(){
             let video =document.querySelector("video");
-            console.log(video);
             video.addEventListener("timeupdate",function(){
                 let timeDisplay;
                 //用秒数来显示当前播放进度
@@ -69,6 +68,7 @@
             collect(){
 
             },
+            //发送弹幕
             sendBarrage(){
                 barrageFunction.sendBarrage(this.sendInfo).then(res=>{
                     console.log(res);
@@ -76,6 +76,12 @@
                         this.$message("发送成功");
                         this.sendVisible=false;
                     }
+                })
+            },
+            addHistory(){
+                let data={resourceId:this.$route.params.resourceId};
+                historyFunction.addHistory(data).then(res=>{
+                    console.log(res);
                 })
             }
         }

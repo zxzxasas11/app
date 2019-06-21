@@ -24,10 +24,15 @@ class BarrageModel {
      * 查询弹幕
      * @returns {Promise<*>}
      */
-    static async getAll(pageSize,currentPage){
-        return await Bill.findAndCountAll({
+    static async getAll(params){
+        let pageSize = params.pageSize!==undefined?parseInt(params.pageSize):8;
+        let currentPage = params.currentPage!==undefined?parseInt(params.currentPage):1;
+        return await Barrage.findAndCountAll({
             'limit':pageSize,
-            'offset':pageSize*(currentPage-1)
+            'offset':pageSize*(currentPage-1),
+            'order': [
+                ['createTime', 'DESC']
+            ],
         });
     }
 }

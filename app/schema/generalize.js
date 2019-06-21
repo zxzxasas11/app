@@ -37,6 +37,9 @@ module.exports = function(sequelize,DataTypes){
                 type: DataTypes.DATE,
                 allowNull: true,
                 field: 'updateTime',
+                get() {
+                    return moment(this.getDataValue('updateTime')).format('YYYY-MM-DD HH:mm:ss');
+                }
             },
         }
         ,{

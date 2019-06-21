@@ -21,6 +21,20 @@ class BarrageController {
             message: `创建成功`,
         }
     }
+
+    /**
+     * 查询所有
+     * @returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async getAll(ctx){
+        let params = ctx.request.query;
+        let data = await BarrageModel.getAll(params);
+        ctx.response.status=200;
+        ctx.body={
+            code: 200,
+            data:data
+        }
+    }
 }
 
 module.exports = BarrageController;

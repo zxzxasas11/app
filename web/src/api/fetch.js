@@ -23,7 +23,11 @@ axios.interceptors.request.use(config => {
 
   // 获取token
   //config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
-  config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+  let token = localStorage.getItem("token");
+  if(token){
+    config.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("token");
+  }
+
   return config
 
 }, error => {
@@ -38,11 +42,14 @@ axios.interceptors.response.use(response => {
    */
 
     // 如果后端有新的token则重新缓存
-  let newToken = response.headers['new-token'];
+  /*let newToken = response.headers['new-token'];
 
   if (newToken) {
     //Vue.ls.set("web-token", newToken);
     localStorage.setItem("token",newToken);
+  }*/
+  if(response.data.token){
+    localStorage.setItem("token",response.data.token);
   }
   // 关闭loading
   //closeLoading()
