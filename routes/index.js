@@ -11,6 +11,7 @@ const CategoryController = require('../app/controllers/category');
 const BarrageController = require('../app/controllers/barrage');
 const HistoryController = require('../app/controllers/history');
 const GeneralizeController = require('../app/controllers/generalize');
+const ReplyController = require('../app/controllers/reply');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -79,6 +80,12 @@ router.post("/history/add",HistoryController.create);
 router.get("/generalize/getInfo",GeneralizeController.getInfo);
 router.post("/generalize/update",GeneralizeController.update);
 
+/**
+ * reply接口
+ *
+ */
+router.post("/peply/add",ReplyController.create);
+router.get("/reply/getAll",ReplyController.getAll);
 /**
  * 上传文件
  */

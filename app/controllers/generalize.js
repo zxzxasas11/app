@@ -25,13 +25,6 @@ class GeneralizeController {
      * @param ctx
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
-    /*{
-        "resourceId":"4aad92608f2211e9a1c18b5ad7f1eaac1",
-        "info":{
-            "ifCollect":1,
-            "ifThumb":2
-        }
-    }*/
     static async update(ctx){
         let {resourceId,ifCollect,ifThumb} = ctx.request.body;
         let params ={resourceId,ifCollect,ifThumb};

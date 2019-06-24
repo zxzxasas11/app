@@ -42,15 +42,15 @@ axios.interceptors.response.use(response => {
    */
 
     // 如果后端有新的token则重新缓存
-  /*let newToken = response.headers['new-token'];
+  let newToken = response.headers['newToken'];
 
   if (newToken) {
     //Vue.ls.set("web-token", newToken);
     localStorage.setItem("token",newToken);
-  }*/
-  if(response.data.token){
-    localStorage.setItem("token",response.data.token);
   }
+  /*if(response.data.token){
+    localStorage.setItem("token",response.data.token);
+  }*/
   // 关闭loading
   //closeLoading()
 
@@ -75,7 +75,7 @@ axios.interceptors.response.use(response => {
       break;
 
     case 412:
-      alert(code)
+      alert(code);
       break;
 
     case 422:
