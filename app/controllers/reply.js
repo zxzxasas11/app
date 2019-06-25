@@ -1,6 +1,6 @@
 const ReplyModel = require("../modules/reply");
-const resp =require('../util/response');
 const UUID = require('uuid');
+const common = require('../util/common');
 class ReplyController {
     /**
      * 增加回复
@@ -28,10 +28,12 @@ class ReplyController {
      */
     static async getAll(ctx){
         let data = await ReplyModel.getAll();
+        //let aa = await common.listToTree(data.rows,"0","replyPid","replyId");
         ctx.response.status=200;
         ctx.body={
             code: 200,
-            data:data
+            msg:'',
+            data:data,
         }
     }
 }
