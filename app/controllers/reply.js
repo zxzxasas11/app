@@ -28,7 +28,7 @@ class ReplyController {
      */
     static async getAll(ctx){
         let data = await ReplyModel.getAll();
-        //let aa = await common.listToTree(data.rows,"0","replyPid","replyId");
+        //let aa = await common.listToTree(data,"0","replyPid","replyId");
         ctx.response.status=200;
         ctx.body={
             code: 200,

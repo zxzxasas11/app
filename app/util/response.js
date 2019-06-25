@@ -1,5 +1,5 @@
 
-module.exports = function (ctx,code,msg,data){
+module.exports = function(ctx,code,msg,data){
     ctx.response.status=code;
     if(data){
         ctx.body={

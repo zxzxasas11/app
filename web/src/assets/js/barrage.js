@@ -1,5 +1,4 @@
-(function() {
-
+module.exports=function(){
     class Barrage {
         constructor(canvas) {
             this.canvas = document.getElementById(canvas);
@@ -87,4 +86,4 @@
         barrage.shoot(t);
     })
 
-})();
+}().bind(this);
