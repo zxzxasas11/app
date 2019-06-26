@@ -1,8 +1,8 @@
 const UserModel = require("../modules/user");
+const LoginLogModel = require("../modules/loginLog");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secret = require('../../config/secret');
-
 class UserController {
     /**
      * 创建用户
@@ -95,7 +95,11 @@ class UserController {
      */
     static async login(ctx){
         const {code,password} = ctx.request.body;
-
+        console.log("-----------------");
+        let a  = ctx.req.headers['x-forwarded-for'] ||
+            ctx.req.connection.remoteAddress ||
+            ctx.req.socket.remoteAddress ||
+            ctx.req.connection.socket.remoteAddress;
         let userDetail =await UserModel.listByName(code);
         if(!userDetail){
             ctx.response.status = 403;
@@ -113,9 +117,32 @@ class UserController {
                 code: 200,
                 message: "登录成功",
                 data: {
-                    token: token
+                    token: token,
+                    ip:a
+                }
+            };
+            //查询是否是当天首次登录
+            let info = await LoginLogModel.getRecent(userDetail.userId);
+            if(!info){
+                console.log("是今天首次登录")
+            }
+            else{
+                let Time = new Date();
+                let date = new Date(info.loginTime);
+                if(Time.getFullYear()===date.getFullYear()&&Time.getMonth()===date.getMonth()&&Time.getDate()===date.getDate()){
+                    console.log("今天已经登录过了")
+                }
+                else{
+                    console.log("是今天首次登录")
                 }
             }
+
+
+            //创建登录记录
+            let log ={userId:userDetail.userId,ipAddress:a};
+            await LoginLogModel.create(log);
+
+
         }
         else {
             ctx.response.status = 401;

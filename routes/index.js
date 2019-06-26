@@ -12,6 +12,7 @@ const BarrageController = require('../app/controllers/barrage');
 const HistoryController = require('../app/controllers/history');
 const GeneralizeController = require('../app/controllers/generalize');
 const ReplyController = require('../app/controllers/reply');
+const LoginLogController = require('../app/controllers/loginLog');
 const router = new Router({
   prefix: '/api/v1'
 });
@@ -86,6 +87,15 @@ router.post("/generalize/update",GeneralizeController.update);
  */
 router.post("/peply/add",ReplyController.create);
 router.get("/reply/getAll",ReplyController.getAll);
+
+
+/**
+ * loginLog接口
+ *
+ */
+router.get("/Log/getRecent",LoginLogController.getRecent);
+
+
 /**
  * 上传文件
  */

@@ -1,47 +1,45 @@
 const moment = require("moment");
 module.exports = function(sequelize,DataTypes){
-    return sequelize.define('user',{
-            userId:{
+    return sequelize.define('currency',{
+            //帖子id
+            articleId:{
                 type: DataTypes.STRING,
                 primaryKey: true,
+                allowNull: false,
+                field: 'article_id'
+            },
+            //帖子标题
+            title:{
+                type: DataTypes.STRING,
                 allowNull: true,
+                field: 'title'
             },
-            //账号
-            code:{
+            //帖子内容
+            content:{
                 type: DataTypes.STRING,
-                allowNull: false,
-                field: 'code'
+                allowNull: true,
+                field: 'content'
             },
-            //密码
-            password:{
+            //发帖人
+            creator:{
                 type: DataTypes.STRING,
-                allowNull: false,
-                field: 'password'
+                allowNull: true,
+                field: 'creator'
             },
-            //用户名
-            username:{
-                type: DataTypes.STRING,
-                allowNull: false,
-                field:'username'
-            },
-            //创建时间
+            //发帖时间
             createTime:{
-                type: DataTypes.DATE,
+                type: DataTypes.STRING,
                 allowNull: true,
                 field: 'createTime',
-                get() {
+                get(){
                     return moment(this.getDataValue('createTime')).format('YYYY-MM-DD HH:mm:ss');
                 }
             },
-            power:{
-                type: DataTypes.INTEGER,
+            //状态
+            status:{
+                type: DataTypes.STRING,
                 allowNull: true,
-                field: 'power',
-            },
-            coin:{
-                type: DataTypes.INTEGER,
-                allowNull: true,
-                field: 'coin',
+                field: 'status',
             },
         }
         ,{

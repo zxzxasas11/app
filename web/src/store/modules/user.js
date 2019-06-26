@@ -2,13 +2,11 @@ import users from '../../api/user'
 import jwt_decode from 'jwt-decode'
 const user ={
   state:{
-    userInfo:{
       token:""
-    },
   },
   mutations:{
     SET_USERINFO(state,data){
-      state.userInfo.token = data;
+      state.token = data;
       localStorage.setItem("token",data);
     }
   },
@@ -34,6 +32,7 @@ const user ={
      */
     async userLogin({state, commit}, params) {
       let data = await users.login(params).then(res=>{
+        console.log(res);
         commit("SET_USERINFO",res.data.token);
       });
 

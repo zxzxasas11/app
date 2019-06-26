@@ -27,6 +27,13 @@ Vue.use(VueLocalStorage);
 
 Vue.config.productionTip = false;
 
+
+import 'babel-polyfill';
+/* eslint-disable no-new */
+
+
+import Promise from 'es6-promise';
+Promise.polyfill();
 Vue.use(VueLazyLoad, {
   error: '../static/lazyloading.svg',
   loading: '../static/lazyloading.svg'

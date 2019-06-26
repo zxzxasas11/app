@@ -58,7 +58,7 @@
         },
         computed: {
             username() {
-                return this.$store.getters.getUserName;
+                return this.$store.getters.getToken.username;
 
             },
             includedComponents() {
