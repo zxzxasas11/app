@@ -37,9 +37,9 @@ app.use(views(__dirname + '/views', {
 
 // logger
 app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
+  const start = new Date();
+  await next();
+  const ms = new Date() - start;
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 });
 
@@ -87,4 +87,4 @@ app.use((ctx, next) => {
 
 
 
-module.exports = app
+module.exports = app;

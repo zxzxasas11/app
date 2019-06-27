@@ -62,6 +62,18 @@ class UserModel {
         });
         return true;
     }
+
+    /**
+     * 更新用户硬币数
+     * @param userId
+     * @param coinNum
+     * @returns {Promise<*>}
+     */
+    static async updateCoin(userId,coinNum){
+        //根据userId 修改硬币
+        await User.increment("coin",{by:coinNum,where:{userId}});
+        //await Sequelize.query('UPDATE user SET coin = (coin+'+coinNum+') WHERE userId = "'+userId+'" ');
+    }
 }
 
 module.exports = UserModel;

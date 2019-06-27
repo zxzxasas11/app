@@ -20,10 +20,10 @@ class UserController {
             password,
             code
         };
+        params.coin  =2;
         try {
             const salt =bcrypt.genSaltSync();
-            const hash =bcrypt.hashSync(params.password,salt);
-            params.password = hash;
+            params.password = bcrypt.hashSync(params.password,salt);;
             await UserModel.create(params);
             ctx.response.status = 200;
             ctx.body = {
@@ -95,7 +95,6 @@ class UserController {
      */
     static async login(ctx){
         const {code,password} = ctx.request.body;
-        console.log("-----------------");
         let a  = ctx.req.headers['x-forwarded-for'] ||
             ctx.req.connection.remoteAddress ||
             ctx.req.socket.remoteAddress ||
@@ -112,31 +111,35 @@ class UserController {
         if (bcrypt.compareSync(password, userDetail.password)){
             const userToken ={code:userDetail.code,userId:userDetail.userId,username:userDetail.username,power:userDetail.power};
             const token =jwt.sign(userToken,secret.sign,{expiresIn:"1h"});
+
+            //查询是否是当天首次登录
+            let info = await LoginLogModel.getRecent(userDetail.userId);
+            let firstLogin=0;
+            if(!info){
+                console.log("是账号首次登录");
+                firstLogin=1;
+            }
+            else{
+                let Time = new Date();
+                let date = new Date(info.loginTime);
+                if(Time.getFullYear()===date.getFullYear()&&Time.getMonth()===date.getMonth()&&Time.getDate()===date.getDate()){
+                    console.log("今天已经登录过了");
+                }
+                else{
+                    console.log("是今天首次登录");
+                    firstLogin =1;
+                    await UserModel.updateCoin(userDetail.userId,1);
+                }
+            }
             ctx.response.status = 200;
             ctx.body = {
                 code: 200,
                 message: "登录成功",
                 data: {
                     token: token,
-                    ip:a
+                    firstLogin:firstLogin
                 }
             };
-            //查询是否是当天首次登录
-            let info = await LoginLogModel.getRecent(userDetail.userId);
-            if(!info){
-                console.log("是今天首次登录")
-            }
-            else{
-                let Time = new Date();
-                let date = new Date(info.loginTime);
-                if(Time.getFullYear()===date.getFullYear()&&Time.getMonth()===date.getMonth()&&Time.getDate()===date.getDate()){
-                    console.log("今天已经登录过了")
-                }
-                else{
-                    console.log("是今天首次登录")
-                }
-            }
-
 
             //创建登录记录
             let log ={userId:userDetail.userId,ipAddress:a};

@@ -3,6 +3,7 @@ const resp =require('../util/response');
 const UUID = require('uuid');
 class LoginLogController {
     /**
+     * 查询最近的一条登录信息
      * @param ctx
      *
      */
