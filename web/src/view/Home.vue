@@ -1,6 +1,6 @@
 <template>
 		<div>
-			<div>欢迎您</div>
+			<!--<div>欢迎您</div>
 			<el-upload
 				class="upload-demo"
 				drag
@@ -10,7 +10,8 @@
 				<i class="el-icon-upload"></i>
 				<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
 				<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
-			</el-upload>
+			</el-upload>-->
+			<video :src="src" controls style="width:200px;height:100px;"></video>
 		</div>
 </template>
 
@@ -22,10 +23,17 @@
 				name: "Home",
 				data(){
 						return{
-
+							src:""
 						}
 				},
 				created(){
+					this.axios.get("/resource/blob",{responseType:'blob'}).then(msg=>{
+						this.src= URL.createObjectURL(msg.data);
+						//URL.revokeObjectURL(msg.data);
+					})
+				},
+				mounted(){
+
 				},
 				computed:{
 					/*username(){
@@ -36,7 +44,7 @@
 
 				},
 				methods:{
-					upload(a){
+					/*upload(a){
 						console.log(a);
 						let reader = new FileReader();
 						reader.readAsBinaryString(a.file);
@@ -54,7 +62,7 @@
 									return false
 								}
 							}.bind(this)
-					},
+					},*/
 				}
 		}
 </script>

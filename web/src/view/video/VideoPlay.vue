@@ -1,6 +1,6 @@
 <template>
     <div>
-        <video src="" controls="controls" :src="serverIp+videoInfo.url"></video>
+        <video controls="controls" :src="serverIp+videoInfo.url"></video>
         <el-button></el-button>
         <el-button @click="collect">收藏</el-button>
         <el-button></el-button>

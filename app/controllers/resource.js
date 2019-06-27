@@ -1,5 +1,6 @@
 const ResourceModel = require("../modules/resource");
 const resp =require('../util/response');
+const fs = require('fs');
 class ResourceController {
     /**
      * 增加分类
@@ -63,6 +64,25 @@ class ResourceController {
             code: 200,
             message: `修改成功`,
         };
+    }
+
+
+    /**
+     * 视频转blob
+     * @param ctx
+     * @returns 创建成功返回用户信息，失败返回错误信息
+     */
+    static async blob(ctx){
+        try {
+            // open 一个放在服务器的视频
+            let data = fs.readFileSync('http://192.168.31.226:5000/2019614/95f29d208e4a11e9b702c56d43a0aae7.mp4');
+            ctx.response.body = data
+        } catch (e) {
+            return Promise.reject({
+                status: 500,
+                message: '视频传输错误'
+            })
+        }
     }
 }
 
