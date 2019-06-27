@@ -75,7 +75,7 @@ class ResourceController {
     static async blob(ctx){
         try {
             // open 一个放在服务器的视频
-            let data = fs.readFileSync('http://192.168.31.226:5000/2019614/95f29d208e4a11e9b702c56d43a0aae7.mp4');
+            let data = fs.readFileSync('G:\\upload\\2019614\\95f29d208e4a11e9b702c56d43a0aae7.mp4');
             ctx.response.body = data
         } catch (e) {
             return Promise.reject({

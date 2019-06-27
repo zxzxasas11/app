@@ -18,7 +18,7 @@ export default new Router({
       path: '/',
       name: '主页',
       component(resolve) {
-        require(['../view/front/Home.vue'], resolve);
+        require(['../view/Home.vue'], resolve);
       },
       children:[
         {

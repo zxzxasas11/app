@@ -11,7 +11,8 @@
 				<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
 				<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
 			</el-upload>-->
-			<video :src="src" controls style="width:200px;height:100px;"></video>
+			<video  controls width="200" height="100":src="src"  >
+			</video>
 		</div>
 </template>
 
@@ -29,11 +30,10 @@
 				created(){
 					this.axios.get("/resource/blob",{responseType:'blob'}).then(msg=>{
 						this.src= URL.createObjectURL(msg.data);
-						//URL.revokeObjectURL(msg.data);
+						URL.revokeObjectURL(msg.data);
 					})
 				},
 				mounted(){
-
 				},
 				computed:{
 					/*username(){
