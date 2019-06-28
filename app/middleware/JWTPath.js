@@ -11,4 +11,4 @@ module.exports = [
     "/api/v1/category/getAll",
     "/api/v1/upload",
     "/api/v1/resource/blob",
-]
+];

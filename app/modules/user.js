@@ -7,7 +7,7 @@ const Sequelize = db.sequelize;
 
 // 引入数据表模型
 const User = Sequelize.import('../schema/user');
-User.sync({force: false}); //自动创建表
+User.sync({force: false,alter:true}); //自动创建表     alter   同步表设计
 const Op = Sequelize.Op;
 class UserModel {
     /**
@@ -16,12 +16,7 @@ class UserModel {
      * @returns {Promise<boolean>}
      */
     static async create(user) {
-        /*let {userId, code, password, username,createTime} = user;
-        user.userId = UUID.v1().replace(/-/g,"");
-        user.createTime = new Date();
-        await User.create(user);
-        return true*/
-        let {userId, code, password, username,createTime } = user;
+        let { code, password, username } = user;
         user.userId = UUID.v1().replace(/-/g,"");
         user.createTime = new Date();
         return await User.create(user);

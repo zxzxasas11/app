@@ -4,7 +4,7 @@ module.exports = function(sequelize,DataTypes){
             userId:{
                 type: DataTypes.STRING,
                 primaryKey: true,
-                allowNull: true,
+                allowNull: false,
             },
             //账号
             code:{
@@ -27,7 +27,7 @@ module.exports = function(sequelize,DataTypes){
             //创建时间
             createTime:{
                 type: DataTypes.DATE,
-                allowNull: true,
+                allowNull: false,
                 field: 'createTime',
                 get() {
                     return moment(this.getDataValue('createTime')).format('YYYY-MM-DD HH:mm:ss');
@@ -35,12 +35,12 @@ module.exports = function(sequelize,DataTypes){
             },
             power:{
                 type: DataTypes.INTEGER,
-                allowNull: true,
+                allowNull: false,
                 field: 'power',
             },
             coin:{
                 type: DataTypes.INTEGER,
-                allowNull: true,
+                allowNull: false,
                 field: 'coin',
             },
         }

@@ -1,6 +1,6 @@
 const ResourceModel = require("../modules/resource");
-const resp =require('../util/response');
 const fs = require('fs');
+const testMiddle =require('../middleware/testMiddle');
 class ResourceController {
     /**
      * 增加分类
@@ -73,16 +73,28 @@ class ResourceController {
      * @returns 创建成功返回用户信息，失败返回错误信息
      */
     static async blob(ctx){
-        try {
-            // open 一个放在服务器的视频
+        /*const test = new testMiddle();
+        console.log(`${test.fix()}`);*/
+        //testMiddle.aa();
+        /*try {
             let data = fs.readFileSync('G:\\upload\\2019614\\95f29d208e4a11e9b702c56d43a0aae7.mp4');
-            ctx.response.body = data
+            /!*fs.readFile('G:\\upload\\2019614\\95f29d208e4a11e9b702c56d43a0aae7.mp4','utf-8',(err,data)=>{
+                if(err){
+                    console.log(err);
+                }
+                //else console.log(data);
+                else{
+                    console.log("----------------");
+                }
+            });*!/
+            ctx.response.status=200;
+            ctx.response.body = data;
         } catch (e) {
             return Promise.reject({
                 status: 500,
                 message: '视频传输错误'
             })
-        }
+        }*/
     }
 }
 

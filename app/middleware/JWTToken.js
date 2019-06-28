@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken')
-const secret = require('../../config/secret')
-const util = require('util')
-const verify = util.promisify(jwt.verify)
-const JWTPath = require('./JWTPath')
+const jwt = require('jsonwebtoken');
+const secret = require('../../config/secret');
+const util = require('util');
+const verify = util.promisify(jwt.verify);
+const JWTPath = require('./JWTPath');
 
 
 /**
@@ -13,7 +13,7 @@ module.exports = function () {
 
         // 检测过滤的路由就不做解析JWT了
         if (JWTPath.find(item => item === ctx.request.url)) {
-            await next()
+            await next();
 
             return false;
         }
@@ -23,7 +23,7 @@ module.exports = function () {
             const token = ctx.header.authorization;
 
             if (token) {
-                let payload
+                let payload;
                 try {
                     // 解密payload，获取用户名和ID
                     payload = await verify(token.split(' ')[1], secret.sign);
@@ -60,4 +60,4 @@ module.exports = function () {
 
         }
     }
-}
+};

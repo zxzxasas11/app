@@ -1,5 +1,4 @@
 const BarrageModel = require("../modules/barrage");
-const resp =require('../util/response');
 const UUID = require('uuid');
 class BarrageController {
     /**
